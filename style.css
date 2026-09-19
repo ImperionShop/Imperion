@@ -1127,3 +1127,157 @@ button {
         opacity: 1;
     }
 }
+/* Fondo fotográfico completo de la portada */
+
+.hero {
+    min-height: 720px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 100px 7%;
+    background: #080808;
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.hero-background .carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.hero-background .carousel-track {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.8s ease;
+}
+
+.hero-background .carousel-track img {
+    width: 100%;
+    height: 100%;
+    flex: 0 0 100%;
+    object-fit: cover;
+    object-position: center;
+    filter:
+        brightness(0.48)
+        contrast(1.18)
+        saturate(0.82)
+        blur(1.5px);
+    transform: scale(1.04);
+}
+
+/* Capa oscura para mejorar la lectura */
+
+.hero-background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 8, 8, 0.94) 0%,
+            rgba(8, 8, 8, 0.72) 38%,
+            rgba(8, 8, 8, 0.32) 72%,
+            rgba(8, 8, 8, 0.58) 100%
+        );
+    pointer-events: none;
+}
+
+/* Degradado superior e inferior */
+
+.hero-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8, 8, 8, 0.48) 0%,
+            transparent 28%,
+            transparent 68%,
+            rgba(8, 8, 8, 0.82) 100%
+        );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+}
+
+/* Las letras resaltan sobre la fotografía */
+
+.hero h1,
+.hero-description,
+.hero .eyebrow,
+.hero-buttons,
+.hero-meta {
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.85);
+}
+
+.hero h1 {
+    color: #fff;
+}
+
+.hero-description {
+    color: #eee;
+}
+
+/* Controles del carrusel */
+
+.hero-background .carousel-button {
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.hero:hover .carousel-button {
+    opacity: 1;
+}
+
+.hero-background .carousel-dots {
+    z-index: 4;
+    bottom: 28px;
+}
+
+@media (max-width: 800px) {
+    .hero {
+        min-height: 720px;
+        padding: 90px 7%;
+    }
+
+    .hero-background .carousel-button {
+        opacity: 1;
+    }
+
+    .hero-background .carousel-track img {
+        object-position: center;
+        filter:
+            brightness(0.42)
+            contrast(1.15)
+            saturate(0.8)
+            blur(1px);
+    }
+
+    .hero-background::before {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(8, 8, 8, 0.9),
+                rgba(8, 8, 8, 0.5)
+            );
+    }
+}
