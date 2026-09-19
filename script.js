@@ -244,9 +244,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("no-scroll");
     }
 
-    if (botonCuenta) {
-        botonCuenta.addEventListener("click", abrirCuenta);
-    }
+if (botonCuenta) {
+    botonCuenta.addEventListener("click", abrirCuenta);
+}
 
     if (cerrarCuenta) {
         cerrarCuenta.addEventListener("click", cerrarModalCuenta);
@@ -290,6 +290,52 @@ document.addEventListener("DOMContentLoaded", () => {
                 behavior: "smooth"
             });
         });
+    }
+ const carrusel = document.querySelector("#carousel");
+    const pistaCarrusel = document.querySelector("#carousel-track");
+    const botonAnterior = document.querySelector("#carousel-prev");
+    const botonSiguiente = document.querySelector("#carousel-next");
+    const puntosCarrusel = document.querySelectorAll(".carousel-dot");
+
+    if (carrusel && pistaCarrusel) {
+        let imagenActual = 0;
+        const totalImagenes = pistaCarrusel.querySelectorAll("img").length;
+
+        function mostrarImagen(indice) {
+            imagenActual = (indice + totalImagenes) % totalImagenes;
+
+            pistaCarrusel.style.transform =
+                `translateX(-${imagenActual * 100}%)`;
+
+            puntosCarrusel.forEach((punto, indicePunto) => {
+                punto.classList.toggle(
+                    "active",
+                    indicePunto === imagenActual
+                );
+            });
+        }
+
+        if (botonSiguiente) {
+            botonSiguiente.addEventListener("click", () => {
+                mostrarImagen(imagenActual + 1);
+            });
+        }
+
+        if (botonAnterior) {
+            botonAnterior.addEventListener("click", () => {
+                mostrarImagen(imagenActual - 1);
+            });
+        }
+
+        puntosCarrusel.forEach((punto) => {
+            punto.addEventListener("click", () => {
+                mostrarImagen(Number(punto.dataset.slide));
+            });
+        });
+
+        setInterval(() => {
+            mostrarImagen(imagenActual + 1);
+        }, 5000);
     }
 
     actualizarCarrito();
