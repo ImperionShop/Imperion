@@ -251,14 +251,76 @@
         </div>
     </aside>
 
-    <section class="account-modal" id="account-modal" aria-label="Cuenta">
-        <button class="close-button" id="close-account" aria-label="Cerrar cuenta">×</button>
-        <span class="modal-symbol">♛</span>
-        <p class="eyebrow">IMPERION MEMBERS</p>
-        <h2>Tu estilo.<br><em>Tu espacio.</em></h2>
-        <p>La cuenta de usuario estará disponible próximamente.</p>
-        <button class="button button-gold" id="modal-message">Crear cuenta <span>↗</span></button>
-    </section>
+<section class="account-modal" id="account-modal" aria-label="Cuenta">
+    <button class="close-button" id="close-account" aria-label="Cerrar cuenta">
+        ×
+    </button>
+
+    <span class="modal-symbol">♛</span>
+
+    <p class="eyebrow">IMPERION MEMBERS</p>
+
+    <h2 id="account-title">
+        Crea tu<br><em>espacio.</em>
+    </h2>
+
+    <p id="account-description">
+        Regístrate para guardar tus datos y disfrutar una experiencia más personalizada.
+    </p>
+
+    <form id="account-form">
+        <label for="account-name" id="account-name-label">
+            Nombre
+        </label>
+
+        <input
+            type="text"
+            id="account-name"
+            placeholder="Tu nombre"
+            autocomplete="name"
+            required
+        >
+
+        <label for="account-email">
+            Correo electrónico
+        </label>
+
+        <input
+            type="email"
+            id="account-email"
+            placeholder="tu@correo.com"
+            autocomplete="email"
+            required
+        >
+
+        <label for="account-password">
+            Contraseña
+        </label>
+
+        <input
+            type="password"
+            id="account-password"
+            placeholder="Mínimo 6 caracteres"
+            autocomplete="new-password"
+            minlength="6"
+            required
+        >
+
+        <button class="button button-gold account-submit" type="submit">
+            <span id="account-submit-text">Crear cuenta</span>
+            <span>↗</span>
+        </button>
+    </form>
+
+    <p class="account-switch">
+        <span id="account-switch-question">¿Ya tienes una cuenta?</span>
+        <button type="button" id="account-switch-button">
+            Iniciar sesión
+        </button>
+    </p>
+
+    <p class="account-feedback" id="account-feedback"></p>
+</section>
 
     <div class="toast" id="toast"></div>
 

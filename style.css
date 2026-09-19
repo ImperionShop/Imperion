@@ -801,3 +801,66 @@ button {
     font-size: 10px;
     font-weight: bold;
 }
+/* Formulario de cuenta */
+
+.account-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 25px;
+    text-align: left;
+}
+
+.account-modal label {
+    color: #c9a45c;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.account-modal input {
+    width: 100%;
+    min-height: 44px;
+    margin-bottom: 8px;
+    padding: 0 13px;
+    border: 1px solid #444;
+    outline: none;
+    background: #080808;
+    color: #f5f3ef;
+    font: inherit;
+}
+
+.account-modal input:focus {
+    border-color: #c9a45c;
+}
+
+.account-submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.account-switch {
+    margin-top: 22px;
+    color: #999;
+    font-size: 12px;
+}
+
+.account-switch button {
+    margin-left: 5px;
+    border: 0;
+    background: transparent;
+    color: #e2c477;
+    font-size: 12px;
+}
+
+.account-switch button:hover {
+    text-decoration: underline;
+}
+
+.account-feedback {
+    min-height: 18px;
+    margin-top: 15px;
+    color: #e2c477;
+    font-size: 12px;
+}

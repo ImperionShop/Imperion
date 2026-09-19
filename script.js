@@ -294,4 +294,76 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     actualizarCarrito();
+
+      const formularioCuenta = document.querySelector("#account-form");
+    const botonCambiarCuenta = document.querySelector("#account-switch-button");
+    const tituloCuenta = document.querySelector("#account-title");
+    const descripcionCuenta = document.querySelector("#account-description");
+    const textoBotonCuenta = document.querySelector("#account-submit-text");
+    const preguntaCuenta = document.querySelector("#account-switch-question");
+    const etiquetaNombre = document.querySelector("#account-name-label");
+    const campoNombre = document.querySelector("#account-name");
+    const campoContrasena = document.querySelector("#account-password");
+    const mensajeCuenta = document.querySelector("#account-feedback");
+
+    let modoInicioSesion = false;
+
+    function actualizarFormularioCuenta() {
+        if (modoInicioSesion) {
+            tituloCuenta.innerHTML = "Bienvenido<br><em>de nuevo.</em>";
+            descripcionCuenta.textContent = "Inicia sesión para continuar con tu experiencia en Imperion.";
+            textoBotonCuenta.textContent = "Iniciar sesión";
+            preguntaCuenta.textContent = "¿Aún no tienes una cuenta?";
+            botonCambiarCuenta.textContent = "Crear cuenta";
+            etiquetaNombre.style.display = "none";
+            campoNombre.style.display = "none";
+            campoNombre.required = false;
+            campoContrasena.autocomplete = "current-password";
+        } else {
+            tituloCuenta.innerHTML = "Crea tu<br><em>espacio.</em>";
+            descripcionCuenta.textContent = "Regístrate para guardar tus datos y disfrutar una experiencia más personalizada.";
+            textoBotonCuenta.textContent = "Crear cuenta";
+            preguntaCuenta.textContent = "¿Ya tienes una cuenta?";
+            botonCambiarCuenta.textContent = "Iniciar sesión";
+            etiquetaNombre.style.display = "block";
+            campoNombre.style.display = "block";
+            campoNombre.required = true;
+            campoContrasena.autocomplete = "new-password";
+        }
+
+        mensajeCuenta.textContent = "";
+        formularioCuenta.reset();
+    }
+
+    if (botonCambiarCuenta) {
+        botonCambiarCuenta.addEventListener("click", () => {
+            modoInicioSesion = !modoInicioSesion;
+            actualizarFormularioCuenta();
+        });
+    }
+
+    if (formularioCuenta) {
+        formularioCuenta.addEventListener("submit", (evento) => {
+            evento.preventDefault();
+
+            const nombre = campoNombre.value.trim();
+            const correo = document.querySelector("#account-email").value.trim();
+            const contrasena = campoContrasena.value;
+
+            if (!modoInicioSesion && nombre.length < 2) {
+                mensajeCuenta.textContent = "Escribe un nombre válido.";
+                return;
+            }
+
+            if (contrasena.length < 6) {
+                mensajeCuenta.textContent = "La contraseña debe tener al menos 6 caracteres.";
+                return;
+            }
+
+            mensajeCuenta.textContent = modoInicioSesion
+                ? "El inicio de sesión real se conectará próximamente."
+                : "El registro real se conectará próximamente.";
+        });
+    }
 });
+
