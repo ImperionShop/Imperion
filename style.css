@@ -551,3 +551,207 @@ button {
     background: #c9a45c;
     color: #080808;
 }
+/* Panel del carrito */
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.overlay.visible {
+    display: block;
+}
+
+.cart-panel {
+    width: min(420px, 100%);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 40;
+    padding: 30px;
+    background: #151518;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.cart-panel.open {
+    transform: translateX(0);
+}
+
+.panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #292929;
+}
+
+.panel-header h2 {
+    margin-top: 10px;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: normal;
+}
+
+.close-button {
+    width: 35px;
+    height: 35px;
+    border: 0;
+    background: transparent;
+    color: #ddd;
+    font-size: 28px;
+}
+
+.close-button:hover {
+    color: #e2c477;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.empty-cart {
+    padding: 70px 10px;
+    color: #999;
+    text-align: center;
+}
+
+.empty-cart span {
+    display: block;
+    margin-bottom: 20px;
+    color: #e2c477;
+    font-family: Georgia, serif;
+    font-size: 50px;
+}
+
+.empty-cart p {
+    margin-bottom: 8px;
+    color: #eee;
+}
+
+.empty-cart small {
+    font-size: 12px;
+}
+
+.cart-footer {
+    padding-top: 20px;
+    border-top: 1px solid #292929;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    color: #999;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.cart-total strong {
+    color: #e2c477;
+}
+
+.checkout-button {
+    width: 100%;
+    min-height: 50px;
+    border: 0;
+    background: #c9a45c;
+    color: #080808;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.checkout-button:hover {
+    background: #e2c477;
+}
+
+/* Ventana de cuenta */
+
+.account-modal {
+    width: min(430px, calc(100% - 30px));
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    padding: 45px 35px;
+    border: 1px solid #555;
+    background: #151518;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+.account-modal.open {
+    display: block;
+}
+
+.account-modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.modal-symbol {
+    display: block;
+    margin-bottom: 20px;
+    color: #e2c477;
+    font-family: Georgia, serif;
+    font-size: 60px;
+}
+
+.account-modal h2 {
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: normal;
+}
+
+.account-modal > p:not(.eyebrow) {
+    margin-bottom: 25px;
+    color: #999;
+    line-height: 1.6;
+}
+
+/* Botón volver arriba */
+
+.boton-arriba {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 20;
+    border: 1px solid #c9a45c;
+    background: #080808;
+    color: #e2c477;
+    font-size: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.boton-arriba.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+    .cart-panel {
+        padding: 25px 20px;
+    }
+}
