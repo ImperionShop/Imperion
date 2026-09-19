@@ -37,7 +37,61 @@ document.addEventListener("DOMContentLoaded", () => {
     function formatearPrecio(precio) {
         return `$${precio.toLocaleString("es-CO")}`;
     }
+ const tarjetasCatalogo = document.querySelectorAll(".catalog-card");
 
+    if (tarjetasCatalogo.length > 0) {
+        const observadorCatalogo = new IntersectionObserver(
+            (entradas, observador) => {
+                entradas.forEach((entrada) => {
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add("visible");
+                        observador.unobserve(entrada.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+        tarjetasCatalogo.forEach((tarjeta, indice) => {
+            tarjeta.style.transitionDelay = `${indice * 120}ms`;
+            observadorCatalogo.observe(tarjeta);
+        });
+    }
+
+    const selectoresTalla = document.querySelectorAll(".catalog-card");
+
+    selectoresTalla.forEach((tarjeta) => {
+        const botonesTalla = tarjeta.querySelectorAll(".size-button");
+        const botonAgregar = tarjeta.querySelector(".catalog-add-button");
+
+        botonesTalla.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                botonesTalla.forEach((otroBoton) => {
+                    otroBoton.classList.remove("selected");
+                });
+
+                boton.classList.add("selected");
+                botonAgregar.classList.remove("disabled");
+                botonAgregar.dataset.size = boton.dataset.size;
+            });
+        });
+
+        botonAgregar.addEventListener("click", () => {
+            const tallaSeleccionada = botonAgregar.dataset.size;
+
+            if (!tallaSeleccionada) {
+                mostrarNotificacion("Selecciona una talla antes de continuar");
+                return;
+            }
+
+            const nombre = `${botonAgregar.dataset.name} - Talla ${tallaSeleccionada}`;
+            const precio = Number(botonAgregar.dataset.price);
+
+            agregarAlCarrito(nombre, precio);
+        });
+    });
     function actualizarCarrito() {
         const cantidadTotal = carrito.reduce(
             (total, producto) => total + producto.cantidad,
