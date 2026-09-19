@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const notificacion = document.querySelector("#toast");
     const botonArriba = document.querySelector("#boton-arriba");
 
-    let carrito = [];
+    let carrito = JSON.parse(localStorage.getItem("imperion-carrito")) || [];
 
     function mostrarNotificacion(mensaje) {
         if (!notificacion) {
