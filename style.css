@@ -755,3 +755,49 @@ button {
         padding: 25px 20px;
     }
 }
+/* Botones visibles de cuenta y carrito */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.icon-button {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    color: #e2c477;
+    font-size: 22px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.icon-button:hover {
+    border-color: #c9a45c;
+    background: rgba(201, 164, 92, 0.12);
+}
+
+.cart-button {
+    padding-right: 4px;
+}
+
+#cart-count {
+    min-width: 18px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    border-radius: 50%;
+    background: #c9a45c;
+    color: #080808;
+    font-size: 10px;
+    font-weight: bold;
+}
