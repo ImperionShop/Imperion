@@ -1,103 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IMPERION | Define Your Legacy</title>
+    <title>Imperion | Define Your Legacy</title>
 
-    <link rel="icon" type="image/png" href="imagenes/imperion-icon.png">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="announcement">
-        <span>♛</span>
-        ENVÍOS A TODO COLOMBIA
-        <b>·</b>
-        NUEVA COLECCIÓN DISPONIBLE
-        <span>♛</span>
+    <div class="barra-anuncio">
+        Envíos a todo Colombia · Nueva colección disponible
     </div>
 
-    <header class="site-header">
+    <header class="encabezado">
 
         <a href="#inicio" class="logo">
-            <img src="imagenes/imperion-logo.png" alt="Logo de Imperion">
+            IMPERION
+            <span>DEFINE YOUR LEGACY</span>
         </a>
 
-        <button class="menu-toggle" aria-label="Abrir menú">
+        <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <nav class="main-nav">
-            <a href="#inicio" class="active">Inicio</a>
-            <a href="#tienda">Tienda</a>
+        <nav class="navegacion" id="navegacion">
+            <a href="#inicio">Inicio</a>
+            <a href="#coleccion">Colección</a>
             <a href="#nosotros">Nosotros</a>
             <a href="#contacto">Contacto</a>
         </nav>
 
-        <div class="nav-actions">
-            <button class="icon-button" aria-label="Buscar">⌕</button>
-            <button class="icon-button" aria-label="Cuenta">◯</button>
+        <div class="acciones">
 
-            <button class="icon-button cart-button" aria-label="Carrito">
-                🛒
-                <span class="cart-number">0</span>
+            <button class="boton-icono" id="boton-cuenta" aria-label="Abrir cuenta">
+                ◯
             </button>
+
+            <button class="boton-icono boton-carrito" id="boton-carrito" aria-label="Abrir carrito">
+                🛒
+                <span id="contador-carrito">0</span>
+            </button>
+
         </div>
 
     </header>
 
     <main>
 
-        <section id="inicio" class="hero">
+        <section class="hero" id="inicio">
 
-            <div class="hero-slider">
+            <div class="hero-decoracion decoracion-uno"></div>
+            <div class="hero-decoracion decoracion-dos"></div>
 
-                <div class="slide active">
-                    <img src="imagenes/portada-1.jpg" alt="Colección urbana Imperion">
-                </div>
+            <div class="hero-contenido">
 
-                <div class="slide">
-                    <img src="imagenes/portada-2.jpg" alt="Estilo moderno Imperion">
-                </div>
-
-                <div class="slide">
-                    <img src="imagenes/portada-3.jpg" alt="Nueva colección Imperion">
-                </div>
-
-            </div>
-
-            <div class="hero-overlay"></div>
-            <div class="hero-grid"></div>
-
-            <div class="hero-content">
-
-                <p class="eyebrow">
-                    IMPERION / NEW COLLECTION
-                </p>
+                <p class="etiqueta">IMPERION / NUEVA ERA</p>
 
                 <h1>
                     DEFINE
                     <span>YOUR LEGACY</span>
                 </h1>
 
-                <p class="hero-description">
-                    Moda urbana para quienes no siguen caminos.
-                    <br>
+                <p class="hero-texto">
+                    Ropa urbana para quienes no siguen caminos.
                     Los crean.
                 </p>
 
-                <a href="#tienda" class="gold-button">
+                <a href="#coleccion" class="boton-principal">
                     EXPLORAR COLECCIÓN
                     <span>↗</span>
                 </a>
 
-                <div class="hero-meta">
+                <div class="hero-datos">
                     <span>EST. 2026</span>
                     <span>COLOMBIA</span>
                     <span>IMPERION</span>
@@ -105,183 +84,120 @@
 
             </div>
 
-            <div class="hero-side-label">
-                <span>SCROLL TO DISCOVER</span>
-                <div></div>
-            </div>
-
-            <button class="slider-button previous" aria-label="Imagen anterior">
-                ‹
-            </button>
-
-            <button class="slider-button next" aria-label="Imagen siguiente">
-                ›
-            </button>
-
-            <div class="slider-dots">
-                <button class="dot active" aria-label="Ver imagen 1"></button>
-                <button class="dot" aria-label="Ver imagen 2"></button>
-                <button class="dot" aria-label="Ver imagen 3"></button>
+            <div class="hero-sello">
+                <span>♛</span>
+                <small>ESTILO · PRESENCIA · LEGADO</small>
             </div>
 
         </section>
 
-        <section class="benefits">
+        <section class="beneficios">
 
-            <div class="benefit">
-                <div class="benefit-icon">↗</div>
+            <article class="beneficio">
+                <span class="beneficio-icono">↗</span>
                 <div>
                     <h3>ENVÍOS NACIONALES</h3>
-                    <p>A todo Colombia</p>
+                    <p>Enviamos a todo Colombia</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="benefit">
-                <div class="benefit-icon">◇</div>
+            <article class="beneficio">
+                <span class="beneficio-icono">◇</span>
                 <div>
                     <h3>COMPRA SEGURA</h3>
-                    <p>Tus datos protegidos</p>
+                    <p>Tus datos están protegidos</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="benefit">
-                <div class="benefit-icon">✦</div>
+            <article class="beneficio">
+                <span class="beneficio-icono">✦</span>
                 <div>
                     <h3>CALIDAD PREMIUM</h3>
-                    <p>Diseños exclusivos</p>
+                    <p>Diseños hechos para durar</p>
                 </div>
-            </div>
-
-            <div class="benefit">
-                <div class="benefit-icon">♛</div>
-                <div>
-                    <h3>DEFINE YOUR LEGACY</h3>
-                    <p>Estilo · Presencia · Legado</p>
-                </div>
-            </div>
+            </article>
 
         </section>
 
-        <section class="categories">
+        <section class="seccion coleccion" id="coleccion">
 
-            <div class="section-heading">
-                <p>01 / EXPLORE</p>
-                <h2>ELIGE TU IDENTIDAD</h2>
-            </div>
-
-            <div class="category-grid">
-
-                <a href="#tienda" class="category-card category-black">
-                    <span class="category-number">01</span>
-                    <div>
-                        <h3>CAMISETAS</h3>
-                        <span>Explorar categoría ↗</span>
-                    </div>
-                </a>
-
-                <a href="#tienda" class="category-card category-purple">
-                    <span class="category-number">02</span>
-                    <div>
-                        <h3>HOODIES</h3>
-                        <span>Explorar categoría ↗</span>
-                    </div>
-                </a>
-
-                <a href="#tienda" class="category-card category-gray">
-                    <span class="category-number">03</span>
-                    <div>
-                        <h3>PANTALONES</h3>
-                        <span>Explorar categoría ↗</span>
-                    </div>
-                </a>
-
-            </div>
-
-        </section>
-
-        <section id="tienda" class="store">
-
-            <div class="section-heading store-heading">
-                <p>02 / IMPERION STORE</p>
-                <h2>NUEVA COLECCIÓN</h2>
-                <span>
-                    Piezas diseñadas para representar tu estilo,
+            <div class="encabezado-seccion">
+                <p class="etiqueta">01 / COLECCIÓN</p>
+                <h2>PIEZAS CON <span>IDENTIDAD</span></h2>
+                <p>
+                    Diseños creados para representar tu estilo,
                     tu presencia y tu camino.
-                </span>
+                </p>
             </div>
 
-            <div class="products">
+            <div class="productos">
 
-                <article class="product">
+                <article class="producto">
 
-                    <div class="product-visual black-product">
-                        <span class="product-number">01</span>
+                    <div class="producto-imagen producto-negro">
+                        <span class="producto-numero">01</span>
                         <strong>I</strong>
                         <small>IMPERION</small>
                     </div>
 
-                    <div class="product-info">
-                        <p>T-SHIRT / BLACK</p>
+                    <div class="producto-detalles">
+                        <p>CAMISETA / NEGRA</p>
                         <h3>Imperion Black</h3>
                         <strong>$89.900 COP</strong>
-                        <button class="add-cart">
+
+                        <button
+                            class="boton-agregar"
+                            data-nombre="Imperion Black"
+                            data-precio="89900"
+                        >
                             AGREGAR AL CARRITO
                         </button>
                     </div>
 
                 </article>
 
-                <article class="product">
+                <article class="producto">
 
-                    <div class="product-visual purple-product">
-                        <span class="product-number">02</span>
+                    <div class="producto-imagen producto-morado">
+                        <span class="producto-numero">02</span>
                         <strong>I</strong>
                         <small>IMPERION</small>
                     </div>
 
-                    <div class="product-info">
-                        <p>T-SHIRT / PURPLE</p>
+                    <div class="producto-detalles">
+                        <p>CAMISETA / MORADA</p>
                         <h3>Imperial Purple</h3>
                         <strong>$94.900 COP</strong>
-                        <button class="add-cart">
+
+                        <button
+                            class="boton-agregar"
+                            data-nombre="Imperial Purple"
+                            data-precio="94900"
+                        >
                             AGREGAR AL CARRITO
                         </button>
                     </div>
 
                 </article>
 
-                <article class="product">
+                <article class="producto">
 
-                    <div class="product-visual gold-product">
-                        <span class="product-number">03</span>
+                    <div class="producto-imagen producto-dorado">
+                        <span class="producto-numero">03</span>
                         <strong>♛</strong>
                         <small>IMPERION</small>
                     </div>
 
-                    <div class="product-info">
-                        <p>HOODIE / GOLD</p>
+                    <div class="producto-detalles">
+                        <p>BUZO / DORADO</p>
                         <h3>Royal Hoodie</h3>
                         <strong>$139.900 COP</strong>
-                        <button class="add-cart">
-                            AGREGAR AL CARRITO
-                        </button>
-                    </div>
 
-                </article>
-
-                <article class="product">
-
-                    <div class="product-visual gray-product">
-                        <span class="product-number">04</span>
-                        <strong>I</strong>
-                        <small>IMPERION</small>
-                    </div>
-
-                    <div class="product-info">
-                        <p>HOODIE / GREY</p>
-                        <h3>Urban Imperial</h3>
-                        <strong>$149.900 COP</strong>
-                        <button class="add-cart">
+                        <button
+                            class="boton-agregar"
+                            data-nombre="Royal Hoodie"
+                            data-precio="139900"
+                        >
                             AGREGAR AL CARRITO
                         </button>
                     </div>
@@ -292,116 +208,46 @@
 
         </section>
 
-        <section class="featured">
+        <section class="seccion manifiesto" id="nosotros">
 
-            <div class="featured-content">
-                <p>03 / THE IMPERION MINDSET</p>
+            <div class="manifiesto-contenido">
+
+                <p class="etiqueta">02 / EL MANIFIESTO</p>
 
                 <h2>
                     MÁS QUE ROPA.
-                    <br>
                     <span>UNA IDENTIDAD.</span>
                 </h2>
 
-                <p class="featured-text">
-                    Imperion representa a quienes construyen su propio camino
-                    y convierten su estilo en una declaración.
+                <p>
+                    Imperion nace para quienes convierten su estilo
+                    en una declaración. Cada pieza representa seguridad,
+                    individualidad y ambición.
                 </p>
 
-                <a href="#nosotros" class="outline-button">
-                    CONOCER IMPERION
+                <a href="#contacto" class="boton-secundario">
+                    CONOCER MÁS
                     <span>↗</span>
                 </a>
+
             </div>
 
-            <div class="featured-symbol">
-                <div class="big-crown">♛</div>
+            <div class="manifiesto-simbolo">
+                <span>♛</span>
                 <p>DEFINE YOUR LEGACY</p>
-                <span>IMPERION / 2026</span>
+                <small>IMPERION / 2026</small>
             </div>
 
         </section>
 
-        <section id="nosotros" class="about">
+        <section class="seccion contacto" id="contacto">
 
-            <div class="section-heading">
-                <p>04 / OUR STORY</p>
-                <h2>EL IMPERIO</h2>
+            <div class="encabezado-seccion">
+                <p class="etiqueta">03 / CONTACTO</p>
+                <h2>HABLEMOS</h2>
             </div>
 
-            <div class="about-grid">
-
-                <div class="about-text">
-                    <p>
-                        IMPERION nace de una idea:
-                        <strong>crear algo que represente más que una simple prenda.</strong>
-                    </p>
-
-                    <p>
-                        Nuestra identidad combina elegancia,
-                        estética urbana y una visión moderna.
-                    </p>
-
-                    <p>
-                        Cada detalle está pensado para transmitir
-                        presencia, seguridad e individualidad.
-                    </p>
-
-                    <div class="about-signature">
-                        IMPERION
-                        <span>DEFINE YOUR LEGACY</span>
-                    </div>
-                </div>
-
-                <div class="about-card">
-                    <div class="about-card-line"></div>
-                    <div class="about-crown">♛</div>
-                    <span>IMPERION</span>
-                    <small>EST. 2026 / COLOMBIA</small>
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="newsletter">
-
-            <p>05 / JOIN THE WORLD</p>
-
-            <h2>FORMA PARTE DEL LEGADO</h2>
-
-            <span>
-                Recibe novedades, lanzamientos y contenido exclusivo.
-            </span>
-
-            <form id="newsletter-form">
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Tu correo electrónico"
-                    required
-                >
-
-                <button type="submit">
-                    UNIRME
-                    <span>↗</span>
-                </button>
-
-            </form>
-
-            <p id="newsletter-message"></p>
-
-        </section>
-
-        <section id="contacto" class="contact">
-
-            <div class="section-heading">
-                <p>06 / GET IN TOUCH</p>
-                <h2>CONTACTO</h2>
-            </div>
-
-            <div class="contact-grid">
+            <div class="contacto-grid">
 
                 <div>
                     <span>CORREO</span>
@@ -415,7 +261,7 @@
 
                 <div>
                     <span>UBICACIÓN</span>
-                    <p>Colombia 🇨🇴</p>
+                    <p>Colombia</p>
                 </div>
 
             </div>
@@ -424,37 +270,85 @@
 
     </main>
 
-    <footer>
+    <footer class="pie-pagina">
 
-        <div class="footer-logo">
-            <img src="imagenes/imperion-logo.png" alt="Logo de Imperion">
+        <div class="logo logo-footer">
+            IMPERION
+            <span>DEFINE YOUR LEGACY</span>
         </div>
 
-        <p>DEFINE YOUR LEGACY.</p>
-
-        <div class="footer-links">
-            <a href="#inicio">Inicio</a>
-            <a href="#tienda">Tienda</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-
-        <small>
-            © 2026 IMPERION · Todos los derechos reservados.
-        </small>
+        <p>© 2026 Imperion. Todos los derechos reservados.</p>
 
     </footer>
 
-    <div class="toast" id="toast">
-        Producto agregado al carrito
-    </div>
+    <aside class="panel-carrito" id="panel-carrito">
+
+        <div class="cabecera-carrito">
+            <div>
+                <p>IMPERION STORE</p>
+                <h2>Tu carrito</h2>
+            </div>
+
+            <button id="cerrar-carrito" class="boton-cerrar">
+                ×
+            </button>
+        </div>
+
+        <div class="productos-carrito" id="productos-carrito">
+
+            <div class="carrito-vacio">
+                <span>♛</span>
+                <p>Tu carrito está vacío.</p>
+                <small>Agrega una pieza de la colección.</small>
+            </div>
+
+        </div>
+
+        <div class="pie-carrito">
+
+            <div class="total-carrito">
+                <span>SUBTOTAL</span>
+                <strong id="total-carrito">$0 COP</strong>
+            </div>
+
+            <button class="boton-comprar" id="boton-comprar">
+                FINALIZAR COMPRA
+                <span>↗</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="fondo-modal" id="fondo-modal"></div>
+
+    <section class="modal-cuenta" id="modal-cuenta">
+
+        <button class="boton-cerrar" id="cerrar-cuenta">
+            ×
+        </button>
+
+        <div class="cuenta-marca">
+            <span>♛</span>
+            <p>IMPERION</p>
+        </div>
+
+        <h2>Bienvenido</h2>
+
+        <p>
+            Esta sección estará disponible próximamente.
+        </p>
+
+        <button class="boton-principal boton-modal">
+            CREAR CUENTA
+            <span>↗</span>
+        </button>
+
+    </section>
+
+    <div class="notificacion" id="notificacion"></div>
 
     <script src="script.js"></script>
 
-    <script src="./script.js"></script>
 </body>
-
-</html>
-</body>
-
 </html>

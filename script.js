@@ -1,234 +1,233 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /*
-    =========================================
-    CARRUSEL PRINCIPAL
-    =========================================
-    */
+    const botonesAgregar = document.querySelectorAll(".boton-agregar");
+    const contadorCarrito = document.querySelector("#contador-carrito");
+    const botonCarrito = document.querySelector("#boton-carrito");
+    const panelCarrito = document.querySelector("#panel-carrito");
+    const cerrarCarrito = document.querySelector("#cerrar-carrito");
+    const productosCarrito = document.querySelector("#productos-carrito");
+    const totalCarrito = document.querySelector("#total-carrito");
+    const botonComprar = document.querySelector("#boton-comprar");
 
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
-    const nextButton = document.querySelector(".next");
-    const previousButton = document.querySelector(".previous");
-    const hero = document.querySelector(".hero");
+    const botonCuenta = document.querySelector("#boton-cuenta");
+    const modalCuenta = document.querySelector("#modal-cuenta");
+    const fondoModal = document.querySelector("#fondo-modal");
+    const cerrarCuenta = document.querySelector("#cerrar-cuenta");
 
-    let currentSlide = 0;
-    let slideTimer;
+    const botonMenu = document.querySelector("#boton-menu");
+    const navegacion = document.querySelector("#navegacion");
+    const notificacion = document.querySelector("#notificacion");
 
-    function showSlide(index) {
-        if (slides.length === 0) return;
+    let carrito = [];
 
-        if (index >= slides.length) {
-            currentSlide = 0;
-        } else if (index < 0) {
-            currentSlide = slides.length - 1;
-        } else {
-            currentSlide = index;
+    function mostrarNotificacion(mensaje) {
+        if (!notificacion) return;
+
+        notificacion.textContent = mensaje;
+        notificacion.classList.add("visible");
+
+        setTimeout(() => {
+            notificacion.classList.remove("visible");
+        }, 2200);
+    }
+
+    function formatearPrecio(precio) {
+        return `$${precio.toLocaleString("es-CO")} COP`;
+    }
+
+    function actualizarCarrito() {
+        if (contadorCarrito) {
+            contadorCarrito.textContent = carrito.reduce(
+                (total, producto) => total + producto.cantidad,
+                0
+            );
         }
 
-        slides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === currentSlide);
+        if (!productosCarrito || !totalCarrito) return;
+
+        if (carrito.length === 0) {
+            productosCarrito.innerHTML = `
+                <div class="carrito-vacio">
+                    <span>♛</span>
+                    <p>Tu carrito está vacío.</p>
+                    <small>Agrega una pieza de la colección.</small>
+                </div>
+            `;
+
+            totalCarrito.textContent = "$0 COP";
+            return;
+        }
+
+        productosCarrito.innerHTML = "";
+
+        carrito.forEach((producto, indice) => {
+            const elemento = document.createElement("div");
+
+            elemento.className = "producto-carrito";
+
+            elemento.innerHTML = `
+                <div>
+                    <h3>${producto.nombre}</h3>
+                    <p>${formatearPrecio(producto.precio)}</p>
+                </div>
+
+                <div class="controles-producto">
+                    <button class="disminuir-producto" data-indice="${indice}">
+                        −
+                    </button>
+
+                    <span>${producto.cantidad}</span>
+
+                    <button class="aumentar-producto" data-indice="${indice}">
+                        +
+                    </button>
+
+                    <button class="eliminar-producto" data-indice="${indice}">
+                        ×
+                    </button>
+                </div>
+            `;
+
+            productosCarrito.appendChild(elemento);
         });
 
-        dots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === currentSlide);
-        });
+        const total = carrito.reduce(
+            (suma, producto) => suma + producto.precio * producto.cantidad,
+            0
+        );
+
+        totalCarrito.textContent = formatearPrecio(total);
     }
 
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
+    function agregarAlCarrito(nombre, precio) {
+        const productoExistente = carrito.find(
+            (producto) => producto.nombre === nombre
+        );
 
-    function previousSlide() {
-        showSlide(currentSlide - 1);
-    }
-
-    function startSlider() {
-        clearInterval(slideTimer);
-        slideTimer = setInterval(nextSlide, 5000);
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener("click", () => {
-            nextSlide();
-            startSlider();
-        });
-    }
-
-    if (previousButton) {
-        previousButton.addEventListener("click", () => {
-            previousSlide();
-            startSlider();
-        });
-    }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            showSlide(index);
-            startSlider();
-        });
-    });
-
-    if (hero) {
-        hero.addEventListener("mouseenter", () => {
-            clearInterval(slideTimer);
-        });
-
-        hero.addEventListener("mouseleave", () => {
-            startSlider();
-        });
-    }
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    if (hero) {
-        hero.addEventListener("touchstart", (event) => {
-            touchStartX = event.changedTouches[0].screenX;
-            clearInterval(slideTimer);
-        });
-
-        hero.addEventListener("touchend", (event) => {
-            touchEndX = event.changedTouches[0].screenX;
-
-            const difference = touchStartX - touchEndX;
-
-            if (Math.abs(difference) > 50) {
-                if (difference > 0) {
-                    nextSlide();
-                } else {
-                    previousSlide();
-                }
-            }
-
-            startSlider();
-        });
-    }
-
-    showSlide(0);
-    startSlider();
-
-
-    /*
-    =========================================
-    MENÚ PARA CELULAR
-    =========================================
-    */
-
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mainNav = document.querySelector(".main-nav");
-    const navLinks = document.querySelectorAll(".main-nav a");
-
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener("click", () => {
-            menuToggle.classList.toggle("active");
-            mainNav.classList.toggle("open");
-            document.body.classList.toggle("menu-open");
-        });
-
-        navLinks.forEach((link) => {
-            link.addEventListener("click", () => {
-                menuToggle.classList.remove("active");
-                mainNav.classList.remove("open");
-                document.body.classList.remove("menu-open");
+        if (productoExistente) {
+            productoExistente.cantidad++;
+        } else {
+            carrito.push({
+                nombre,
+                precio,
+                cantidad: 1
             });
-        });
+        }
+
+        actualizarCarrito();
+        mostrarNotificacion(`${nombre} fue agregado al carrito`);
     }
 
+    botonesAgregar.forEach((boton) => {
+        boton.addEventListener("click", () => {
+            const nombre = boton.dataset.nombre;
+            const precio = Number(boton.dataset.precio);
 
-    /*
-    =========================================
-    CARRITO
-    =========================================
-    */
-
-    const cartNumber = document.querySelector(".cart-number");
-    const addButtons = document.querySelectorAll(".add-cart");
-    const toast = document.querySelector("#toast");
-
-    let cartCount = 0;
-
-    addButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            cartCount++;
-
-            if (cartNumber) {
-                cartNumber.textContent = cartCount;
-            }
-
-            const originalText = button.textContent;
-
-            button.textContent = "AGREGADO ✓";
-            button.classList.add("added");
-
-            if (toast) {
-                toast.classList.add("show");
-            }
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.classList.remove("added");
-
-                if (toast) {
-                    toast.classList.remove("show");
-                }
-            }, 1600);
+            agregarAlCarrito(nombre, precio);
         });
     });
 
+    if (productosCarrito) {
+        productosCarrito.addEventListener("click", (evento) => {
+            const boton = evento.target.closest("button");
 
-    /*
-    =========================================
-    FORMULARIO DE NEWSLETTER
-    =========================================
-    */
+            if (!boton) return;
 
-    const newsletterForm = document.querySelector("#newsletter-form");
-    const emailInput = document.querySelector("#email");
-    const newsletterMessage = document.querySelector("#newsletter-message");
+            const indice = Number(boton.dataset.indice);
 
-    if (newsletterForm) {
-        newsletterForm.addEventListener("submit", (event) => {
-            event.preventDefault();
+            if (boton.classList.contains("aumentar-producto")) {
+                carrito[indice].cantidad++;
+            }
 
-            if (!emailInput.value.trim()) {
+            if (boton.classList.contains("disminuir-producto")) {
+                carrito[indice].cantidad--;
+
+                if (carrito[indice].cantidad <= 0) {
+                    carrito.splice(indice, 1);
+                }
+            }
+
+            if (boton.classList.contains("eliminar-producto")) {
+                carrito.splice(indice, 1);
+            }
+
+            actualizarCarrito();
+        });
+    }
+
+    function abrirCarrito() {
+        if (!panelCarrito) return;
+
+        panelCarrito.classList.add("abierto");
+        document.body.classList.add("bloquear-scroll");
+    }
+
+    function cerrarPanelCarrito() {
+        if (!panelCarrito) return;
+
+        panelCarrito.classList.remove("abierto");
+        document.body.classList.remove("bloquear-scroll");
+    }
+
+    if (botonCarrito) {
+        botonCarrito.addEventListener("click", abrirCarrito);
+    }
+
+    if (cerrarCarrito) {
+        cerrarCarrito.addEventListener("click", cerrarPanelCarrito);
+    }
+
+    if (botonComprar) {
+        botonComprar.addEventListener("click", () => {
+            if (carrito.length === 0) {
+                mostrarNotificacion("Agrega un producto antes de continuar");
                 return;
             }
 
-            newsletterMessage.textContent =
-                "Gracias por unirte al legado de Imperion.";
-
-            newsletterMessage.classList.add("success");
-
-            newsletterForm.reset();
+            mostrarNotificacion("La compra estará disponible próximamente");
         });
     }
 
+    function abrirCuenta() {
+        if (!modalCuenta || !fondoModal) return;
 
-    /*
-    =========================================
-    ANIMACIONES AL DESPLAZARSE
-    =========================================
-    */
+        modalCuenta.classList.add("visible");
+        fondoModal.classList.add("visible");
+        document.body.classList.add("bloquear-scroll");
+    }
 
-    const animatedElements = document.querySelectorAll(
-        ".category-card, .product, .benefit, .about-text, .about-card, .contact-grid > div"
-    );
+    function cerrarModalCuenta() {
+        if (!modalCuenta || !fondoModal) return;
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
+        modalCuenta.classList.remove("visible");
+        fondoModal.classList.remove("visible");
+        document.body.classList.remove("bloquear-scroll");
+    }
+
+    if (botonCuenta) {
+        botonCuenta.addEventListener("click", abrirCuenta);
+    }
+
+    if (cerrarCuenta) {
+        cerrarCuenta.addEventListener("click", cerrarModalCuenta);
+    }
+
+    if (fondoModal) {
+        fondoModal.addEventListener("click", cerrarModalCuenta);
+    }
+
+    if (botonMenu && navegacion) {
+        botonMenu.addEventListener("click", () => {
+            navegacion.classList.toggle("abierta");
+            botonMenu.classList.toggle("activo");
+        });
+
+        navegacion.querySelectorAll("a").forEach((enlace) => {
+            enlace.addEventListener("click", () => {
+                navegacion.classList.remove("abierta");
+                botonMenu.classList.remove("activo");
             });
-        },
-        {
-            threshold: 0.15
-        }
-    );
+        });
+    }
 
-    animatedElements.forEach((element) => {
-        observer.observe(element);
-    });
+    actualizarCarrito();
 });
