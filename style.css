@@ -1001,3 +1001,129 @@ button {
     font-weight: bold;
     letter-spacing: 2px;
 }
+/* Carrusel integrado al fondo de la portada */
+
+.hero {
+    min-height: 680px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 100px 7%;
+    background: #080808;
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.hero-background .carousel,
+.hero-background .carousel-track {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-background .carousel-track {
+    display: flex;
+    transition: transform 0.8s ease;
+}
+
+.hero-background .carousel-track img {
+    width: 100%;
+    height: 100%;
+    flex: 0 0 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.48) contrast(1.12) saturate(0.82);
+}
+
+.hero-background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 8, 8, 0.96) 0%,
+            rgba(8, 8, 8, 0.78) 36%,
+            rgba(8, 8, 8, 0.28) 75%,
+            rgba(8, 8, 8, 0.55) 100%
+        );
+    pointer-events: none;
+}
+
+.hero-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        180deg,
+        rgba(8, 8, 8, 0.3),
+        transparent 35%,
+        rgba(8, 8, 8, 0.75)
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+}
+
+.hero-background .carousel-button {
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.hero:hover .carousel-button {
+    opacity: 1;
+}
+
+.hero-background .carousel-prev {
+    left: 28px;
+}
+
+.hero-background .carousel-next {
+    right: 28px;
+}
+
+.hero-background .carousel-dots {
+    z-index: 4;
+    bottom: 28px;
+}
+
+.hero-background .carousel-label {
+    z-index: 4;
+}
+
+@media (max-width: 800px) {
+    .hero {
+        min-height: 700px;
+        padding: 90px 7%;
+    }
+
+    .hero-background .carousel-track img {
+        object-position: center;
+    }
+
+    .hero-background::before {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(8, 8, 8, 0.9),
+                rgba(8, 8, 8, 0.55)
+            );
+    }
+
+    .hero-background .carousel-button {
+        opacity: 1;
+    }
+}
