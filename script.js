@@ -1,59 +1,67 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const botonesAgregar = document.querySelectorAll(".boton-agregar");
-    const contadorCarrito = document.querySelector("#contador-carrito");
-    const botonCarrito = document.querySelector("#boton-carrito");
-    const panelCarrito = document.querySelector("#panel-carrito");
-    const cerrarCarrito = document.querySelector("#cerrar-carrito");
-    const productosCarrito = document.querySelector("#productos-carrito");
-    const totalCarrito = document.querySelector("#total-carrito");
-    const botonComprar = document.querySelector("#boton-comprar");
+    const botonesAgregar = document.querySelectorAll(".add-button");
+    const contadorCarrito = document.querySelector("#cart-count");
+    const botonCarrito = document.querySelector("#cart-button");
+    const panelCarrito = document.querySelector("#cart-panel");
+    const cerrarCarrito = document.querySelector("#close-cart");
+    const productosCarrito = document.querySelector("#cart-items");
+    const totalCarrito = document.querySelector("#cart-total");
+    const botonComprar = document.querySelector("#checkout-button");
 
-    const botonCuenta = document.querySelector("#boton-cuenta");
-    const modalCuenta = document.querySelector("#modal-cuenta");
-    const fondoModal = document.querySelector("#fondo-modal");
-    const cerrarCuenta = document.querySelector("#cerrar-cuenta");
+    const botonCuenta = document.querySelector("#account-button");
+    const modalCuenta = document.querySelector("#account-modal");
+    const fondoModal = document.querySelector("#overlay");
+    const cerrarCuenta = document.querySelector("#close-account");
+    const botonMensaje = document.querySelector("#modal-message");
 
-    const botonMenu = document.querySelector("#boton-menu");
-    const navegacion = document.querySelector("#navegacion");
-    const notificacion = document.querySelector("#notificacion");
+    const botonMenu = document.querySelector("#menu-toggle");
+    const navegacion = document.querySelector("#nav");
+    const notificacion = document.querySelector("#toast");
+    const botonArriba = document.querySelector("#boton-arriba");
 
     let carrito = [];
 
     function mostrarNotificacion(mensaje) {
-        if (!notificacion) return;
+        if (!notificacion) {
+            return;
+        }
 
         notificacion.textContent = mensaje;
-        notificacion.classList.add("visible");
+        notificacion.classList.add("show");
 
         setTimeout(() => {
-            notificacion.classList.remove("visible");
+            notificacion.classList.remove("show");
         }, 2200);
     }
 
     function formatearPrecio(precio) {
-        return `$${precio.toLocaleString("es-CO")} COP`;
+        return `$${precio.toLocaleString("es-CO")}`;
     }
 
     function actualizarCarrito() {
+        const cantidadTotal = carrito.reduce(
+            (total, producto) => total + producto.cantidad,
+            0
+        );
+
         if (contadorCarrito) {
-            contadorCarrito.textContent = carrito.reduce(
-                (total, producto) => total + producto.cantidad,
-                0
-            );
+            contadorCarrito.textContent = cantidadTotal;
         }
 
-        if (!productosCarrito || !totalCarrito) return;
+        if (!productosCarrito || !totalCarrito) {
+            return;
+        }
 
         if (carrito.length === 0) {
             productosCarrito.innerHTML = `
-                <div class="carrito-vacio">
+                <div class="empty-cart">
                     <span>♛</span>
                     <p>Tu carrito está vacío.</p>
-                    <small>Agrega una pieza de la colección.</small>
+                    <small>Elige una pieza de la colección.</small>
                 </div>
             `;
 
-            totalCarrito.textContent = "$0 COP";
+            totalCarrito.textContent = "$0";
             return;
         }
 
@@ -62,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         carrito.forEach((producto, indice) => {
             const elemento = document.createElement("div");
 
-            elemento.className = "producto-carrito";
+            elemento.className = "cart-product";
 
             elemento.innerHTML = `
                 <div>
@@ -70,18 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>${formatearPrecio(producto.precio)}</p>
                 </div>
 
-                <div class="controles-producto">
-                    <button class="disminuir-producto" data-indice="${indice}">
+                <div class="cart-controls">
+                    <button
+                        class="decrease-product"
+                        data-indice="${indice}"
+                        aria-label="Disminuir cantidad"
+                    >
                         −
                     </button>
 
                     <span>${producto.cantidad}</span>
 
-                    <button class="aumentar-producto" data-indice="${indice}">
+                    <button
+                        class="increase-product"
+                        data-indice="${indice}"
+                        aria-label="Aumentar cantidad"
+                    >
                         +
                     </button>
 
-                    <button class="eliminar-producto" data-indice="${indice}">
+                    <button
+                        class="remove-product"
+                        data-indice="${indice}"
+                        aria-label="Eliminar producto"
+                    >
                         ×
                     </button>
                 </div>
@@ -104,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (productoExistente) {
-            productoExistente.cantidad++;
+            productoExistente.cantidad += 1;
         } else {
             carrito.push({
                 nombre,
@@ -119,8 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botonesAgregar.forEach((boton) => {
         boton.addEventListener("click", () => {
-            const nombre = boton.dataset.nombre;
-            const precio = Number(boton.dataset.precio);
+            const nombre = boton.dataset.name;
+            const precio = Number(boton.dataset.price);
+
+            if (!nombre || !Number.isFinite(precio)) {
+                mostrarNotificacion("No se pudo agregar este producto");
+                return;
+            }
 
             agregarAlCarrito(nombre, precio);
         });
@@ -130,23 +155,29 @@ document.addEventListener("DOMContentLoaded", () => {
         productosCarrito.addEventListener("click", (evento) => {
             const boton = evento.target.closest("button");
 
-            if (!boton) return;
+            if (!boton) {
+                return;
+            }
 
             const indice = Number(boton.dataset.indice);
 
-            if (boton.classList.contains("aumentar-producto")) {
-                carrito[indice].cantidad++;
+            if (!Number.isInteger(indice) || !carrito[indice]) {
+                return;
             }
 
-            if (boton.classList.contains("disminuir-producto")) {
-                carrito[indice].cantidad--;
+            if (boton.classList.contains("increase-product")) {
+                carrito[indice].cantidad += 1;
+            }
+
+            if (boton.classList.contains("decrease-product")) {
+                carrito[indice].cantidad -= 1;
 
                 if (carrito[indice].cantidad <= 0) {
                     carrito.splice(indice, 1);
                 }
             }
 
-            if (boton.classList.contains("eliminar-producto")) {
+            if (boton.classList.contains("remove-product")) {
                 carrito.splice(indice, 1);
             }
 
@@ -155,17 +186,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function abrirCarrito() {
-        if (!panelCarrito) return;
+        if (!panelCarrito || !fondoModal) {
+            return;
+        }
 
-        panelCarrito.classList.add("abierto");
-        document.body.classList.add("bloquear-scroll");
+        panelCarrito.classList.add("open");
+        fondoModal.classList.add("visible");
+        document.body.classList.add("no-scroll");
     }
 
     function cerrarPanelCarrito() {
-        if (!panelCarrito) return;
+        if (!panelCarrito || !fondoModal) {
+            return;
+        }
 
-        panelCarrito.classList.remove("abierto");
-        document.body.classList.remove("bloquear-scroll");
+        panelCarrito.classList.remove("open");
+        fondoModal.classList.remove("visible");
+        document.body.classList.remove("no-scroll");
     }
 
     if (botonCarrito) {
@@ -188,19 +225,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function abrirCuenta() {
-        if (!modalCuenta || !fondoModal) return;
+        if (!modalCuenta || !fondoModal) {
+            return;
+        }
 
-        modalCuenta.classList.add("visible");
+        modalCuenta.classList.add("open");
         fondoModal.classList.add("visible");
-        document.body.classList.add("bloquear-scroll");
+        document.body.classList.add("no-scroll");
     }
 
     function cerrarModalCuenta() {
-        if (!modalCuenta || !fondoModal) return;
+        if (!modalCuenta || !fondoModal) {
+            return;
+        }
 
-        modalCuenta.classList.remove("visible");
+        modalCuenta.classList.remove("open");
         fondoModal.classList.remove("visible");
-        document.body.classList.remove("bloquear-scroll");
+        document.body.classList.remove("no-scroll");
     }
 
     if (botonCuenta) {
@@ -212,40 +253,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (fondoModal) {
-        fondoModal.addEventListener("click", cerrarModalCuenta);
+        fondoModal.addEventListener("click", () => {
+            cerrarPanelCarrito();
+            cerrarModalCuenta();
+        });
+    }
+
+    if (botonMensaje) {
+        botonMensaje.addEventListener("click", () => {
+            mostrarNotificacion("La creación de cuentas estará disponible próximamente");
+        });
     }
 
     if (botonMenu && navegacion) {
         botonMenu.addEventListener("click", () => {
-            navegacion.classList.toggle("abierta");
-            botonMenu.classList.toggle("activo");
+            const menuAbierto = navegacion.classList.toggle("open");
+            botonMenu.setAttribute("aria-expanded", menuAbierto);
         });
 
         navegacion.querySelectorAll("a").forEach((enlace) => {
             enlace.addEventListener("click", () => {
-                navegacion.classList.remove("abierta");
-                botonMenu.classList.remove("activo");
+                navegacion.classList.remove("open");
+                botonMenu.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+
+    if (botonArriba) {
+        window.addEventListener("scroll", () => {
+            botonArriba.classList.toggle("visible", window.scrollY > 500);
+        });
+
+        botonArriba.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
             });
         });
     }
 
     actualizarCarrito();
 });
-const botonArriba = document.querySelector("#boton-arriba");
-
-if (botonArriba) {
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 500) {
-            botonArriba.classList.add("visible");
-        } else {
-            botonArriba.classList.remove("visible");
-        }
-    });
-
-    botonArriba.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-}
