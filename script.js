@@ -1,3 +1,11 @@
+const SUPABASE_URL = "https://kifzkoxwlsmhcvozopou.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_XwzTxuCsSDFr-hsWaK5VrA_sjo1dHrU";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 document.addEventListener("DOMContentLoaded", () => {
     const botonesAgregar = document.querySelectorAll(".add-button");
     const contadorCarrito = document.querySelector("#cart-count");
@@ -366,4 +374,113 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+const formularioRegistro = document.querySelector("#registroForm");
 
+if (formularioRegistro) {
+  formularioRegistro.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const nombre = document.querySelector("#nombre").value.trim();
+    const email = document.querySelector("#email").value.trim();
+    const password = document.querySelector("#password").value;
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { nombre }
+      }
+    });
+
+    if (error) {
+      alert(`No se pudo crear la cuenta: ${error.message}`);
+      return;
+    }
+
+    if (data.user) {
+      const { error: perfilError } = await supabaseClient
+        .from("profiles")
+        .insert({
+          id: data.user.id,
+          nombre
+        });
+
+      if (perfilError) {
+        alert(`La cuenta se creó, pero el perfil no: ${perfilError.message}`);
+        return;
+      }
+    }
+
+    alert("Cuenta creada. Revisa tu correo para confirmarla.");
+    formularioRegistro.reset();
+  });
+}
+const formularioLogin = document.querySelector("#loginForm");
+
+if (formularioLogin) {
+  formularioLogin.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.querySelector("#loginEmail").value.trim();
+    const password = document.querySelector("#loginPassword").value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      alert(`No se pudo iniciar sesión: ${error.message}`);
+      return;
+    }
+
+    alert("Sesión iniciada correctamente.");
+    formularioLogin.reset();
+
+    actualizarEstadoUsuario();
+  });
+}
+async function actualizarEstadoUsuario() {
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  const usuarioTexto = document.querySelector("#usuarioTexto");
+  const cerrarSesionBtn = document.querySelector("#cerrarSesionBtn");
+
+  if (user) {
+    if (usuarioTexto) {
+      usuarioTexto.textContent = `Sesión iniciada: ${user.email}`;
+    }
+
+    if (cerrarSesionBtn) {
+      cerrarSesionBtn.hidden = false;
+    }
+  } else {
+    if (usuarioTexto) {
+      usuarioTexto.textContent = "No has iniciado sesión";
+    }
+
+    if (cerrarSesionBtn) {
+      cerrarSesionBtn.hidden = true;
+    }
+  }
+}
+
+const cerrarSesionBtn = document.querySelector("#cerrarSesionBtn");
+
+if (cerrarSesionBtn) {
+  cerrarSesionBtn.addEventListener("click", async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      alert(`No se pudo cerrar sesión: ${error.message}`);
+      return;
+    }
+
+    alert("Sesión cerrada.");
+    actualizarEstadoUsuario();
+  });
+}
+
+actualizarEstadoUsuario();
