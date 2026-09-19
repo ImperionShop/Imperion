@@ -1,76 +1,59 @@
-const SUPABASE_URL = "https://kifzkoxwlsmhcvozopou.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_XwzTxuCsSDFr-hsWaK5VrA_sjo1dHrU";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-);
 document.addEventListener("DOMContentLoaded", () => {
-    const botonesAgregar = document.querySelectorAll(".add-button");
-    const contadorCarrito = document.querySelector("#cart-count");
-    const botonCarrito = document.querySelector("#cart-button");
-    const panelCarrito = document.querySelector("#cart-panel");
-    const cerrarCarrito = document.querySelector("#close-cart");
-    const productosCarrito = document.querySelector("#cart-items");
-    const totalCarrito = document.querySelector("#cart-total");
-    const botonComprar = document.querySelector("#checkout-button");
+    const botonesAgregar = document.querySelectorAll(".boton-agregar");
+    const contadorCarrito = document.querySelector("#contador-carrito");
+    const botonCarrito = document.querySelector("#boton-carrito");
+    const panelCarrito = document.querySelector("#panel-carrito");
+    const cerrarCarrito = document.querySelector("#cerrar-carrito");
+    const productosCarrito = document.querySelector("#productos-carrito");
+    const totalCarrito = document.querySelector("#total-carrito");
+    const botonComprar = document.querySelector("#boton-comprar");
 
-    const botonCuenta = document.querySelector("#account-button");
-    const modalCuenta = document.querySelector("#account-modal");
-    const fondoModal = document.querySelector("#overlay");
-    const cerrarCuenta = document.querySelector("#close-account");
-    const botonMensaje = document.querySelector("#modal-message");
+    const botonCuenta = document.querySelector("#boton-cuenta");
+    const modalCuenta = document.querySelector("#modal-cuenta");
+    const fondoModal = document.querySelector("#fondo-modal");
+    const cerrarCuenta = document.querySelector("#cerrar-cuenta");
 
-    const botonMenu = document.querySelector("#menu-toggle");
-    const navegacion = document.querySelector("#nav");
-    const notificacion = document.querySelector("#toast");
-    const botonArriba = document.querySelector("#boton-arriba");
+    const botonMenu = document.querySelector("#boton-menu");
+    const navegacion = document.querySelector("#navegacion");
+    const notificacion = document.querySelector("#notificacion");
 
-    let carrito = JSON.parse(localStorage.getItem("imperion-carrito")) || [];
+    let carrito = [];
 
     function mostrarNotificacion(mensaje) {
-        if (!notificacion) {
-            return;
-        }
+        if (!notificacion) return;
 
         notificacion.textContent = mensaje;
-        notificacion.classList.add("show");
+        notificacion.classList.add("visible");
 
         setTimeout(() => {
-            notificacion.classList.remove("show");
+            notificacion.classList.remove("visible");
         }, 2200);
     }
 
     function formatearPrecio(precio) {
-        return `$${precio.toLocaleString("es-CO")}`;
+        return `$${precio.toLocaleString("es-CO")} COP`;
     }
 
     function actualizarCarrito() {
-       localStorage.setItem("imperion-carrito", JSON.stringify(carrito));
-        const cantidadTotal = carrito.reduce(
-            (total, producto) => total + producto.cantidad,
-            0
-        );
-
         if (contadorCarrito) {
-            contadorCarrito.textContent = cantidadTotal;
+            contadorCarrito.textContent = carrito.reduce(
+                (total, producto) => total + producto.cantidad,
+                0
+            );
         }
 
-        if (!productosCarrito || !totalCarrito) {
-            return;
-        }
+        if (!productosCarrito || !totalCarrito) return;
 
         if (carrito.length === 0) {
             productosCarrito.innerHTML = `
-                <div class="empty-cart">
+                <div class="carrito-vacio">
                     <span>♛</span>
                     <p>Tu carrito está vacío.</p>
-                    <small>Elige una pieza de la colección.</small>
+                    <small>Agrega una pieza de la colección.</small>
                 </div>
             `;
 
-            totalCarrito.textContent = "$0";
+            totalCarrito.textContent = "$0 COP";
             return;
         }
 
@@ -79,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         carrito.forEach((producto, indice) => {
             const elemento = document.createElement("div");
 
-            elemento.className = "cart-product";
+            elemento.className = "producto-carrito";
 
             elemento.innerHTML = `
                 <div>
@@ -87,30 +70,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>${formatearPrecio(producto.precio)}</p>
                 </div>
 
-                <div class="cart-controls">
-                    <button
-                        class="decrease-product"
-                        data-indice="${indice}"
-                        aria-label="Disminuir cantidad"
-                    >
+                <div class="controles-producto">
+                    <button class="disminuir-producto" data-indice="${indice}">
                         −
                     </button>
 
                     <span>${producto.cantidad}</span>
 
-                    <button
-                        class="increase-product"
-                        data-indice="${indice}"
-                        aria-label="Aumentar cantidad"
-                    >
+                    <button class="aumentar-producto" data-indice="${indice}">
                         +
                     </button>
 
-                    <button
-                        class="remove-product"
-                        data-indice="${indice}"
-                        aria-label="Eliminar producto"
-                    >
+                    <button class="eliminar-producto" data-indice="${indice}">
                         ×
                     </button>
                 </div>
@@ -133,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (productoExistente) {
-            productoExistente.cantidad += 1;
+            productoExistente.cantidad++;
         } else {
             carrito.push({
                 nombre,
@@ -148,13 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botonesAgregar.forEach((boton) => {
         boton.addEventListener("click", () => {
-            const nombre = boton.dataset.name;
-            const precio = Number(boton.dataset.price);
-
-            if (!nombre || !Number.isFinite(precio)) {
-                mostrarNotificacion("No se pudo agregar este producto");
-                return;
-            }
+            const nombre = boton.dataset.nombre;
+            const precio = Number(boton.dataset.precio);
 
             agregarAlCarrito(nombre, precio);
         });
@@ -164,29 +130,23 @@ document.addEventListener("DOMContentLoaded", () => {
         productosCarrito.addEventListener("click", (evento) => {
             const boton = evento.target.closest("button");
 
-            if (!boton) {
-                return;
-            }
+            if (!boton) return;
 
             const indice = Number(boton.dataset.indice);
 
-            if (!Number.isInteger(indice) || !carrito[indice]) {
-                return;
+            if (boton.classList.contains("aumentar-producto")) {
+                carrito[indice].cantidad++;
             }
 
-            if (boton.classList.contains("increase-product")) {
-                carrito[indice].cantidad += 1;
-            }
-
-            if (boton.classList.contains("decrease-product")) {
-                carrito[indice].cantidad -= 1;
+            if (boton.classList.contains("disminuir-producto")) {
+                carrito[indice].cantidad--;
 
                 if (carrito[indice].cantidad <= 0) {
                     carrito.splice(indice, 1);
                 }
             }
 
-            if (boton.classList.contains("remove-product")) {
+            if (boton.classList.contains("eliminar-producto")) {
                 carrito.splice(indice, 1);
             }
 
@@ -195,23 +155,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function abrirCarrito() {
-        if (!panelCarrito || !fondoModal) {
-            return;
-        }
+        if (!panelCarrito) return;
 
-        panelCarrito.classList.add("open");
-        fondoModal.classList.add("visible");
-        document.body.classList.add("no-scroll");
+        panelCarrito.classList.add("abierto");
+        document.body.classList.add("bloquear-scroll");
     }
 
     function cerrarPanelCarrito() {
-        if (!panelCarrito || !fondoModal) {
-            return;
-        }
+        if (!panelCarrito) return;
 
-        panelCarrito.classList.remove("open");
-        fondoModal.classList.remove("visible");
-        document.body.classList.remove("no-scroll");
+        panelCarrito.classList.remove("abierto");
+        document.body.classList.remove("bloquear-scroll");
     }
 
     if (botonCarrito) {
@@ -234,23 +188,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function abrirCuenta() {
-        if (!modalCuenta || !fondoModal) {
-            return;
-        }
+        if (!modalCuenta || !fondoModal) return;
 
-        modalCuenta.classList.add("open");
+        modalCuenta.classList.add("visible");
         fondoModal.classList.add("visible");
-        document.body.classList.add("no-scroll");
+        document.body.classList.add("bloquear-scroll");
     }
 
     function cerrarModalCuenta() {
-        if (!modalCuenta || !fondoModal) {
-            return;
-        }
+        if (!modalCuenta || !fondoModal) return;
 
-        modalCuenta.classList.remove("open");
+        modalCuenta.classList.remove("visible");
         fondoModal.classList.remove("visible");
-        document.body.classList.remove("no-scroll");
+        document.body.classList.remove("bloquear-scroll");
     }
 
     if (botonCuenta) {
@@ -262,225 +212,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (fondoModal) {
-        fondoModal.addEventListener("click", () => {
-            cerrarPanelCarrito();
-            cerrarModalCuenta();
-        });
-    }
-
-    if (botonMensaje) {
-        botonMensaje.addEventListener("click", () => {
-            mostrarNotificacion("La creación de cuentas estará disponible próximamente");
-        });
+        fondoModal.addEventListener("click", cerrarModalCuenta);
     }
 
     if (botonMenu && navegacion) {
         botonMenu.addEventListener("click", () => {
-            const menuAbierto = navegacion.classList.toggle("open");
-            botonMenu.setAttribute("aria-expanded", menuAbierto);
+            navegacion.classList.toggle("abierta");
+            botonMenu.classList.toggle("activo");
         });
 
         navegacion.querySelectorAll("a").forEach((enlace) => {
             enlace.addEventListener("click", () => {
-                navegacion.classList.remove("open");
-                botonMenu.setAttribute("aria-expanded", "false");
-            });
-        });
-    }
-
-    if (botonArriba) {
-        window.addEventListener("scroll", () => {
-            botonArriba.classList.toggle("visible", window.scrollY > 500);
-        });
-
-        botonArriba.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+                navegacion.classList.remove("abierta");
+                botonMenu.classList.remove("activo");
             });
         });
     }
 
     actualizarCarrito();
-
-      const formularioCuenta = document.querySelector("#account-form");
-    const botonCambiarCuenta = document.querySelector("#account-switch-button");
-    const tituloCuenta = document.querySelector("#account-title");
-    const descripcionCuenta = document.querySelector("#account-description");
-    const textoBotonCuenta = document.querySelector("#account-submit-text");
-    const preguntaCuenta = document.querySelector("#account-switch-question");
-    const etiquetaNombre = document.querySelector("#account-name-label");
-    const campoNombre = document.querySelector("#account-name");
-    const campoContrasena = document.querySelector("#account-password");
-    const mensajeCuenta = document.querySelector("#account-feedback");
-
-    let modoInicioSesion = false;
-
-    function actualizarFormularioCuenta() {
-        if (modoInicioSesion) {
-            tituloCuenta.innerHTML = "Bienvenido<br><em>de nuevo.</em>";
-            descripcionCuenta.textContent = "Inicia sesión para continuar con tu experiencia en Imperion.";
-            textoBotonCuenta.textContent = "Iniciar sesión";
-            preguntaCuenta.textContent = "¿Aún no tienes una cuenta?";
-            botonCambiarCuenta.textContent = "Crear cuenta";
-            etiquetaNombre.style.display = "none";
-            campoNombre.style.display = "none";
-            campoNombre.required = false;
-            campoContrasena.autocomplete = "current-password";
-        } else {
-            tituloCuenta.innerHTML = "Crea tu<br><em>espacio.</em>";
-            descripcionCuenta.textContent = "Regístrate para guardar tus datos y disfrutar una experiencia más personalizada.";
-            textoBotonCuenta.textContent = "Crear cuenta";
-            preguntaCuenta.textContent = "¿Ya tienes una cuenta?";
-            botonCambiarCuenta.textContent = "Iniciar sesión";
-            etiquetaNombre.style.display = "block";
-            campoNombre.style.display = "block";
-            campoNombre.required = true;
-            campoContrasena.autocomplete = "new-password";
-        }
-
-        mensajeCuenta.textContent = "";
-        formularioCuenta.reset();
-    }
-
-    if (botonCambiarCuenta) {
-        botonCambiarCuenta.addEventListener("click", () => {
-            modoInicioSesion = !modoInicioSesion;
-            actualizarFormularioCuenta();
-        });
-    }
-
-    if (formularioCuenta) {
-        formularioCuenta.addEventListener("submit", (evento) => {
-            evento.preventDefault();
-
-            const nombre = campoNombre.value.trim();
-            const correo = document.querySelector("#account-email").value.trim();
-            const contrasena = campoContrasena.value;
-
-            if (!modoInicioSesion && nombre.length < 2) {
-                mensajeCuenta.textContent = "Escribe un nombre válido.";
-                return;
-            }
-
-            if (contrasena.length < 6) {
-                mensajeCuenta.textContent = "La contraseña debe tener al menos 6 caracteres.";
-                return;
-            }
-
-            mensajeCuenta.textContent = modoInicioSesion
-                ? "El inicio de sesión real se conectará próximamente."
-                : "El registro real se conectará próximamente.";
-        });
-    }
 });
-const formularioRegistro = document.querySelector("#registroForm");
+const botonArriba = document.querySelector("#boton-arriba");
 
-if (formularioRegistro) {
-  formularioRegistro.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const nombre = document.querySelector("#nombre").value.trim();
-    const email = document.querySelector("#email").value.trim();
-    const password = document.querySelector("#password").value;
-
-    const { data, error } = await supabaseClient.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { nombre }
-      }
+if (botonArriba) {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+            botonArriba.classList.add("visible");
+        } else {
+            botonArriba.classList.remove("visible");
+        }
     });
 
-    if (error) {
-      alert(`No se pudo crear la cuenta: ${error.message}`);
-      return;
-    }
-
-    if (data.user) {
-      const { error: perfilError } = await supabaseClient
-        .from("profiles")
-        .insert({
-          id: data.user.id,
-          nombre
+    botonArriba.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
-
-      if (perfilError) {
-        alert(`La cuenta se creó, pero el perfil no: ${perfilError.message}`);
-        return;
-      }
-    }
-
-    alert("Cuenta creada. Revisa tu correo para confirmarla.");
-    formularioRegistro.reset();
-  });
-}
-const formularioLogin = document.querySelector("#loginForm");
-
-if (formularioLogin) {
-  formularioLogin.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const email = document.querySelector("#loginEmail").value.trim();
-    const password = document.querySelector("#loginPassword").value;
-
-    const { error } = await supabaseClient.auth.signInWithPassword({
-      email,
-      password
     });
-
-    if (error) {
-      alert(`No se pudo iniciar sesión: ${error.message}`);
-      return;
-    }
-
-    alert("Sesión iniciada correctamente.");
-    formularioLogin.reset();
-
-    actualizarEstadoUsuario();
-  });
 }
-async function actualizarEstadoUsuario() {
-  const {
-    data: { user }
-  } = await supabaseClient.auth.getUser();
-
-  const usuarioTexto = document.querySelector("#usuarioTexto");
-  const cerrarSesionBtn = document.querySelector("#cerrarSesionBtn");
-
-  if (user) {
-    if (usuarioTexto) {
-      usuarioTexto.textContent = `Sesión iniciada: ${user.email}`;
-    }
-
-    if (cerrarSesionBtn) {
-      cerrarSesionBtn.hidden = false;
-    }
-  } else {
-    if (usuarioTexto) {
-      usuarioTexto.textContent = "No has iniciado sesión";
-    }
-
-    if (cerrarSesionBtn) {
-      cerrarSesionBtn.hidden = true;
-    }
-  }
-}
-
-const cerrarSesionBtn = document.querySelector("#cerrarSesionBtn");
-
-if (cerrarSesionBtn) {
-  cerrarSesionBtn.addEventListener("click", async () => {
-    const { error } = await supabaseClient.auth.signOut();
-
-    if (error) {
-      alert(`No se pudo cerrar sesión: ${error.message}`);
-      return;
-    }
-
-    alert("Sesión cerrada.");
-    actualizarEstadoUsuario();
-  });
-}
-
-actualizarEstadoUsuario();

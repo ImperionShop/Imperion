@@ -33,60 +33,14 @@
         </nav>
 
         <div class="header-actions">
-<button class="icon-button" id="account-button" aria-label="Abrir cuenta">
-    ♙
-</button>
-
-<button class="icon-button cart-button" id="cart-button" aria-label="Abrir carrito">
-    🛒
-    <span id="cart-count">0</span>
-</button>
+            <button class="icon-button" id="account-button" aria-label="Abrir cuenta">♙</button>
+            <button class="icon-button cart-button" id="cart-button" aria-label="Abrir carrito">
+                ♧
+                <span id="cart-count">0</span>
+            </button>
         </div>
     </header>
-<section class="hero-carousel" aria-label="Promociones destacadas">
-  <div class="carousel-track">
-    <div class="carousel-slide active">
-      <img src="images/banner1.jpg" alt="Nueva colección Imperion">
-      <div class="carousel-text">
-        <h1>Nueva colección</h1>
-        <p>Estilo que representa quién eres.</p>
-        <a href="#productos" class="carousel-button">Comprar ahora</a>
-      </div>
-    </div>
 
-    <div class="carousel-slide">
-      <img src="images/banner2.jpg" alt="Ropa urbana Imperion">
-      <div class="carousel-text">
-        <h1>Estilo urbano</h1>
-        <p>Diseños para todos los días.</p>
-        <a href="#productos" class="carousel-button">Ver productos</a>
-      </div>
-    </div>
-
-    <div class="carousel-slide">
-      <img src="images/banner3.jpg" alt="Ofertas especiales Imperion">
-      <div class="carousel-text">
-        <h1>Ofertas especiales</h1>
-        <p>Encuentra tu próximo look favorito.</p>
-        <a href="#productos" class="carousel-button">Ver ofertas</a>
-      </div>
-    </div>
-  </div>
-
-  <button class="carousel-arrow carousel-prev" aria-label="Imagen anterior">
-    &#10094;
-  </button>
-
-  <button class="carousel-arrow carousel-next" aria-label="Imagen siguiente">
-    &#10095;
-  </button>
-
-  <div class="carousel-dots">
-    <button class="carousel-dot active" aria-label="Ir a la imagen 1"></button>
-    <button class="carousel-dot" aria-label="Ir a la imagen 2"></button>
-    <button class="carousel-dot" aria-label="Ir a la imagen 3"></button>
-  </div>
-</section>
     <main>
         <section class="hero" id="inicio">
             <div class="hero-glow"></div>
@@ -294,78 +248,14 @@
         </div>
     </aside>
 
-<section class="account-modal" id="account-modal" aria-label="Cuenta">
-    <button class="close-button" id="close-account" aria-label="Cerrar cuenta">
-        ×
-    </button>
-
-    <span class="modal-symbol">♛</span>
-
-    <p class="eyebrow">IMPERION MEMBERS</p>
-
-    <h2 id="account-title">
-        Crea tu<br><em>espacio.</em>
-    </h2>
-
-    <p id="account-description">
-        Regístrate para guardar tus datos y disfrutar una experiencia más personalizada.
-    </p>
-
-    <form id="account-form">
-        <label for="account-name" id="account-name-label">
-            Nombre
-        </label>
-
-        <input
-            type="text"
-            id="account-name"
-            placeholder="Tu nombre"
-            autocomplete="name"
-            required
-        >
-
-        <label for="account-email">
-            Correo electrónico
-        </label>
-
-        <input
-            type="email"
-            id="account-email"
-            placeholder="tu@correo.com"
-            autocomplete="email"
-            required
-        >
-
-        <label for="account-password">
-            Contraseña
-        </label>
-
-        <input
-            type="password"
-            id="account-password"
-            placeholder="Mínimo 6 caracteres"
-            autocomplete="new-password"
-            minlength="6"
-            required
-        >
-
-        <button class="button button-gold account-submit" type="submit">
-            <span id="account-submit-text">Crear cuenta</span>
-            <span>↗</span>
-        </button>
-    </form>
-
-    <p class="account-switch">
-        <span id="account-switch-question">¿Ya tienes una cuenta?</span>
-        <button type="button" id="account-switch-button">
-            Iniciar sesión
-        </button>
-    </p>
-
-    <p class="account-feedback" id="account-feedback"></p>
-    <p id="usuarioTexto">No has iniciado sesión</p>
-<button id="cerrarSesionBtn" hidden>Cerrar sesión</button>
-</section>
+    <section class="account-modal" id="account-modal" aria-label="Cuenta">
+        <button class="close-button" id="close-account" aria-label="Cerrar cuenta">×</button>
+        <span class="modal-symbol">♛</span>
+        <p class="eyebrow">IMPERION MEMBERS</p>
+        <h2>Tu estilo.<br><em>Tu espacio.</em></h2>
+        <p>La cuenta de usuario estará disponible próximamente.</p>
+        <button class="button button-gold" id="modal-message">Crear cuenta <span>↗</span></button>
+    </section>
 
     <div class="toast" id="toast"></div>
 
@@ -373,9 +263,6 @@
     ↑
 </button>
 
-<script src="script.js"></script>
-</button>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
 </body>
 </html>
