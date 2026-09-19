@@ -1438,3 +1438,112 @@ button {
         transition: none;
     }
 }
+/* Catálogo nuevo */
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.catalog-card {
+    overflow: hidden;
+    border: 1px solid #292929;
+    background: #151518;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.catalog-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.catalog-card:hover {
+    border-color: #c9a45c;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.catalog-image {
+    height: 360px;
+}
+
+.catalog-placeholder {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background:
+        linear-gradient(135deg, rgba(201, 164, 92, 0.08), transparent 45%),
+        #202024;
+    color: #c9a45c;
+    text-align: center;
+}
+
+.catalog-placeholder > span {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.catalog-placeholder small {
+    color: #888;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.catalog-info {
+    padding: 22px;
+}
+
+.catalog-info h3 {
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.catalog-description {
+    min-height: 48px;
+    margin-bottom: 18px;
+    color: #999;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.catalog-price {
+    margin-bottom: 20px;
+    color: #e2c477;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.catalog-info button[disabled] {
+    width: 100%;
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-image {
+        height: 400px;
+    }
+}
