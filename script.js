@@ -231,3 +231,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     actualizarCarrito();
 });
+const botonArriba = document.querySelector("#boton-arriba");
+
+if (botonArriba) {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+            botonArriba.classList.add("visible");
+        } else {
+            botonArriba.classList.remove("visible");
+        }
+    });
+
+    botonArriba.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
