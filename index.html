@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IMPERIUM | Resale & Curated Streetwear</title>
   
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style-moderno.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,13 +47,30 @@
     </div>
   </nav>
 
-  <!-- PORTADA HERO ORIGINAL -->
-  <header id="inicio" class="hero" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen6.jpeg'); background-size: cover; background-position: center top;">
+  <!-- CARRUSEL HERO / PORTADA SLIDER DE FONDO -->
+  <header id="inicio" class="hero-slider">
+    <!-- Diapositivas de fondo del Carrusel -->
+    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen6.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen4.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen5.jpeg');"></div>
+
+    <!-- Contenido encima del slider -->
     <div class="hero-content">
       <p class="sub-label">ESTILO / ACTITUD / CURADURÍA</p>
       <h1>TU ESTILO,<br><span class="highlight-purple">TU IDENTIDAD</span></h1>
       <p class="hero-text">Ropa urbana, reventa seleccionada y prendas atemporales para quienes no siguen las reglas, sino su propio camino.</p>
       <a href="#catalogo" class="btn-purple">VER COLECCIÓN <i data-lucide="arrow-right"></i></a>
+    </div>
+
+    <!-- Flechas del Carrusel -->
+    <button class="slider-arrow prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
+    <button class="slider-arrow next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
+
+    <!-- Puntos indicadores -->
+    <div class="slider-dots">
+      <span class="dot active" onclick="setSlide(0)"></span>
+      <span class="dot" onclick="setSlide(1)"></span>
+      <span class="dot" onclick="setSlide(2)"></span>
     </div>
   </header>
 
@@ -92,7 +108,7 @@
     </div>
   </section>
 
-  <!-- CATÁLOGO DINÁMICO (PRODUCTOS DESDE JSON) -->
+  <!-- CATÁLOGO DINÁMICO (CARGA AUTOMÁTICA DESDE productos.json) -->
   <section id="catalogo" class="featured-products">
     <div class="section-title-bar">
       <div class="title-left">
@@ -102,6 +118,7 @@
       <a href="#" class="see-all">Ver todos <i data-lucide="arrow-right"></i></a>
     </div>
 
+    <!-- Contenedor donde script.js dibuja tus prendas de productos.json -->
     <div class="products-grid"></div>
   </section>
 
@@ -126,7 +143,7 @@
     </div>
   </aside>
 
-  <!-- FOOTER -->
+  <!-- FOOTER IMPERIUM -->
   <footer id="contacto">
     <p>&copy; 2026 IMPERIUM. Todos los derechos reservados.</p>
   </footer>
