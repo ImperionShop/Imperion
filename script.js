@@ -1,3 +1,13 @@
+// OCULTAR PRELOADER AL CARGAR LA PÁGINA
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+    }, 400); // Pequeña pausa para que la transición se aprecie de forma fluida
+  }
+});
+
 // ==========================================
 // 1. CARGA DINÁMICA DE PRODUCTOS DESDE JSON
 // ==========================================

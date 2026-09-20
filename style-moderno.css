@@ -54,17 +54,17 @@ button {
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Distribuye espacio uniforme */
-  padding: 0 50px; /* Espaciado lateral suficiente */
+  justify-content: space-between;
+  padding: 0 40px;
   z-index: 1000;
   border-bottom: 1px solid var(--border-color);
   box-sizing: border-box;
 }
 
 .nav-left {
+  flex: 1;
   display: flex;
   align-items: center;
-  flex-shrink: 0; /* Evita que el logo se aplaste */
 }
 
 .logo {
@@ -72,18 +72,19 @@ button {
   align-items: center;
   gap: 10px;
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   letter-spacing: 1.5px;
-  white-space: nowrap; /* Impide que el nombre se rompa en dos líneas */
+  white-space: nowrap;
 }
 
-.nav-links {
+.nav-center {
+  flex: 2;
   display: flex;
+  justify-content: center;
   gap: 25px;
-  align-items: center;
 }
 
-.nav-links a {
+.nav-center a {
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -93,16 +94,17 @@ button {
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-center a:hover,
+.nav-center a.active {
   color: var(--text-main);
 }
 
 .nav-right {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 15px;
-  flex-shrink: 0;
 }
 
 .search-box {
@@ -120,136 +122,13 @@ button {
   outline: none;
   color: var(--text-main);
   font-size: 0.8rem;
-  width: 140px; /* Tamaño ajustado para dar espacio a todo */
+  width: 110px;
 }
 
-/* ==========================================
-   3. HERO / PORTADA (CARRUSEL SLIDER)
-   ========================================== */
-.hero-slider {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+.nav-icon-btn {
   display: flex;
   align-items: center;
-  overflow: hidden;
-}
-
-.hero-slider .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-slider .slide.active {
-  opacity: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 10;
-  padding-left: 80px;
-  max-width: 650px;
-}
-
-.sub-label {
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  color: var(--purple-primary);
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.highlight-purple {
-  color: var(--purple-primary);
-  text-shadow: 0 0 20px var(--purple-glow);
-}
-
-.hero-text {
   color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-
-.btn-purple {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--purple-primary);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  padding: 14px 28px;
-  border-radius: 6px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-purple:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px var(--purple-glow);
-}
-
-/* Flechas y Puntos del Carrusel */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  background: rgba(10, 10, 12, 0.6);
-  border: 1px solid var(--border-color);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-}
-
-.slider-arrow:hover {
-  background: var(--purple-primary);
-}
-
-.slider-arrow.prev { left: 30px; }
-.slider-arrow.next { right: 30px; }
-
-.slider-dots {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-  display: flex;
-  gap: 10px;
-}
-
-.slider-dots .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.slider-dots .dot.active {
-  background: var(--purple-primary);
-  transform: scale(1.2);
 }
 
 /* ==========================================
@@ -707,4 +586,83 @@ footer {
 .contact-card a, .contact-card span {
   font-weight: 600;
   font-size: 0.95rem;
+}/* ==========================================
+   PANTALLA DE CARGA (PRELOADER)
+   ========================================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #0a0a0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.loader-crown {
+  width: 50px;
+  height: 50px;
+  stroke: #8b5cf6;
+  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.8));
+  animation: pulseCrown 1.8s infinite ease-in-out;
+}
+
+.loader-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #f4f4f5;
+}
+
+.loader-bar {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-progress {
+  width: 100%;
+  height: 100%;
+  background: #8b5cf6;
+  position: absolute;
+  left: -100%;
+  animation: loadingBar 1.5s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Keyframes de las animaciones */
+@keyframes pulseCrown {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 22px rgba(139, 92, 246, 1));
+  }
+}
+
+@keyframes loadingBar {
+  0% { left: -100%; }
+  50% { left: 0%; }
+  100% { left: 100%; }
 }

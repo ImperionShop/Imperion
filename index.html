@@ -14,17 +14,31 @@
 </head>
 <body>
 
-  <!-- BARRA DE NAVEGACIÓN - LOGO -->
-  <div class="nav-left">
-    <a href="#" class="logo">
-      <svg class="crown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <!-- PANTALLA DE CARGA / PRELOADER ESTÉTICO -->
+  <div id="preloader">
+    <div class="loader-content">
+      <svg class="loader-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
       </svg>
-      <span>IMPERION CLUB</span>
-    </a>
+      <h2 class="loader-title">IMPERION CLUB</h2>
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
+      </div>
+    </div>
   </div>
 
-    <div class="nav-links">
+<!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo">
+        <svg class="crown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
+        </svg>
+        <span>IMPERION CLUB</span>
+      </a>
+    </div>
+
+    <div class="nav-center">
       <a href="#" class="active">Inicio</a>
       <a href="#catalogo">Tienda</a>
       <a href="#categorias">Categorías</a>
@@ -34,7 +48,7 @@
     <div class="nav-right">
       <div class="search-box">
         <i data-lucide="search"></i>
-        <input type="text" placeholder="Buscar prendas o marcas...">
+        <input type="text" placeholder="Buscar...">
       </div>
       
       <a href="#" class="nav-icon-btn"><i data-lucide="user"></i></a>
