@@ -1,60 +1,75 @@
-// Estado global del Carrito
+// Estado del Carrito
 let cart = [];
-let total = 0;
 
-// Abrir o cerrar el panel del carrito y la capa de fondo
+// Función para abrir/cerrar el carrito
 function toggleCart() {
-  const cartSidebar = document.getElementById('cart-sidebar');
-  const cartOverlay = document.getElementById('cart-overlay');
+  const sidebar = document.getElementById('cart-sidebar');
+  const overlay = document.getElementById('cart-overlay');
   
-  cartSidebar.classList.toggle('active');
-  cartOverlay.classList.toggle('active');
+  sidebar.classList.toggle('active');
+  overlay.classList.toggle('active');
 }
 
-// Agregar prenda al carrito
+// Función para agregar productos
 function addToCart(name, price) {
-  cart.push({ name, price });
-  total += price;
-  updateCartUI();
-  
-  // Abrir automáticamente el carrito si está cerrado
-  const cartSidebar = document.getElementById('cart-sidebar');
-  if (!cartSidebar.classList.contains('active')) {
-    toggleCart();
+  const existingItem = cart.find(item => item.name === name);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: price,
+      quantity: 1
+    });
   }
+
+  updateCartUI();
+  toggleCart(); // Abre el carrito automáticamente al añadir
 }
 
-// Actualizar la interfaz del carrito en tiempo real
+// Función para eliminar un producto
+function removeFromCart(name) {
+  cart = cart.filter(item => item.name !== name);
+  updateCartUI();
+}
+
+// Actualizar la interfaz del carrito
 function updateCartUI() {
-  const cartCount = document.getElementById('cart-count');
   const cartItemsContainer = document.getElementById('cart-items');
+  const cartCount = document.getElementById('cart-count');
   const cartTotal = document.getElementById('cart-total');
 
-  // Actualizar la cantidad de elementos en el contador
-  cartCount.textContent = cart.length;
+  // Calcular total de productos
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = totalItems;
 
-  // Actualizar el valor total acumulado
-  cartTotal.textContent = `$${total.toFixed(2)} USD`;
-
-  // Renderizar la lista de productos
+  // Si está vacío
   if (cart.length === 0) {
-    cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Tu carrito está vacío por ahora.</p>';
-  } else {
-    cartItemsContainer.innerHTML = cart.map((item, index) => `
-      <div class="cart-item">
-        <div>
-          <div class="cart-item-title">${item.name}</div>
-          <div class="cart-item-price">$${item.price.toFixed(2)} USD</div>
-        </div>
-        <button onclick="removeFromCart(${index})" style="background:none; border:none; color: #ef4444; cursor:pointer;">Eliminar</button>
-      </div>
-    `).join('');
+    cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Tu bolsa de compra está vacía por ahora.</p>';
+    cartTotal.textContent = '$0.00 USD';
+    return;
   }
-}
 
-// Eliminar un producto del carrito según su índice
-function removeFromCart(index) {
-  total -= cart[index].price;
-  cart.splice(index, 1);
-  updateCartUI();
+  // Generar HTML de productos
+  let itemsHTML = '';
+  let totalPrice = 0;
+
+  cart.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    totalPrice += itemTotal;
+
+    itemsHTML += `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15); padding-bottom: 1rem;">
+        <div>
+          <h5 style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: #fff; margin-bottom: 0.2rem;">${item.name}</h5>
+          <p style="font-size: 0.8rem; color: var(--primary-gold); font-weight: 600;">$${item.price}.00 USD x ${item.quantity}</p>
+        </div>
+        <button onclick="removeFromCart('${item.name}')" style="background: none; border: none; color: #ff5555; cursor: pointer; font-size: 1.2rem;">&times;</button>
+      </div>
+    `;
+  });
+
+  cartItemsContainer.innerHTML = itemsHTML;
+  cartTotal.textContent = `$${totalPrice}.00 USD`;
 }
