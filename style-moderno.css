@@ -629,4 +629,105 @@ footer {
   left: 0;
   display: inline-block;
   margin-bottom: 12px;
+}/* ==========================================
+   TARJETAS CUADRADAS Y ANIMADAS (SIN IMAGEN)
+   ========================================== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  aspect-ratio: 1 / 1; /* Garantiza la forma cuadrada exacta */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
+/* Animación al pasar el cursor (Hover effect) */
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--purple-primary);
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
+}
+
+.product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+/* Efecto de luz animada tenue al fondo de la tarjeta al hacer hover */
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+/* SECCIÓN DE CONTACTO */
+.contact-section {
+  padding: 60px 80px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-card {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  padding: 20px 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--purple-primary);
+  transform: translateY(-3px);
+}
+
+.contact-card i {
+  color: var(--purple-primary);
+  width: 24px;
+  height: 24px;
+}
+
+.contact-card a, .contact-card span {
+  font-weight: 600;
+  font-size: 0.95rem;
 }
