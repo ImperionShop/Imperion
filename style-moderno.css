@@ -671,3 +671,8 @@ footer {
   50% { left: 0%; }
   100% { left: 100%; }
 }
+/* Espaciado para que el header no monte sobre la sección Hero */
+.hero {
+  padding-top: 120px; /* Le da espacio libre debajo de la navbar */
+  min-height: 80vh;
+}
