@@ -907,3 +907,15 @@ footer {
   padding: 1.2rem;
   overflow: hidden;
 }
+/* Estilos para el logo */
+.site-logo {
+  max-width: 150px; /* Ajusta este valor según el tamaño que prefieras */
+  height: auto;     /* Mantiene la proporción de la imagen sin deformarla */
+  display: block;
+}
+
+/* Opcional: si quieres alineación o márgenes en el contenedor */
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+}
