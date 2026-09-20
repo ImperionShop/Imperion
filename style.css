@@ -1,18 +1,17 @@
-/* --- VARIABLES Y PALETA DE COLORES --- */
+/* --- VARIABLES Y PALETA IMPERIUM --- */
 :root {
   --bg-color: #0a0a0c;
   --panel-bg: #121217;
   --primary-gold: #d4af37;
   --gold-hover: #f3e5ab;
   --accent-purple: #6b21a8;
-  --purple-glow: rgba(107, 33, 168, 0.4);
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
   --font-heading: 'Syne', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
 }
 
-/* --- RESET BÁSICO --- */
+/* --- RESET --- */
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- NAVEGACIÓN --- */
+/* --- NAVBAR --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -48,7 +47,6 @@ body {
   color: var(--primary-gold);
   text-decoration: none;
   letter-spacing: 4px;
-  padding-left: 4px;
 }
 
 .nav-links a {
@@ -90,29 +88,59 @@ body {
   font-weight: bold;
 }
 
-/* --- HERO --- */
+/* --- HERO & RULETA DE FONDOS --- */
 .hero {
-  min-height: 100dvh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   position: relative;
-  background: radial-gradient(circle at center, var(--accent-purple) 0%, transparent 70%);
+  overflow: hidden;
 }
 
+/* Slider / Ruleta */
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 2s ease-in-out, transform 15s linear;
+  transform: scale(1);
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1.08); /* Efecto zoom suave */
+}
+
+/* Capa para contraste (oscurece la imagen para leer las letras) */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 12, 0.75);
+  background: rgba(10, 10, 12, 0.65); /* Ajusta el contraste aquí (0.65) */
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 850px;
   padding: 0 1rem;
 }
@@ -121,7 +149,6 @@ body {
   color: var(--primary-gold);
   text-transform: uppercase;
   letter-spacing: 5px;
-  padding-left: 5px;
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -207,7 +234,6 @@ body {
   margin-bottom: 3rem;
 }
 
-/* --- CATEGORÍAS --- */
 .categories {
   padding: 6rem 5%;
 }
@@ -237,16 +263,11 @@ body {
   width: 100%;
   height: 100%;
   opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
 .urban { background-color: #1a1a24; }
 .luxury { background-color: #241a24; }
 .modern { background-color: #1a2424; }
-
-.category-card:hover .card-bg {
-  opacity: 0.85;
-}
 
 .card-content {
   position: absolute;
@@ -270,7 +291,6 @@ body {
   color: var(--text-muted);
 }
 
-/* --- CATÁLOGO --- */
 .catalog {
   padding: 4rem 5%;
   background-color: var(--panel-bg);
@@ -306,7 +326,6 @@ body {
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .product-info {
@@ -326,7 +345,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* --- CARRITO SIDEBAR --- */
+/* --- CARRITO --- */
 .cart-sidebar {
   position: fixed;
   top: 0;
@@ -356,8 +375,6 @@ body {
 
 .cart-header h3 {
   font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: 1px;
   color: var(--primary-gold);
 }
 
@@ -379,26 +396,6 @@ body {
   color: var(--text-muted);
   text-align: center;
   margin-top: 2rem;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.cart-item-title {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.cart-item-price {
-  color: var(--primary-gold);
-  font-size: 0.9rem;
-  font-weight: 600;
 }
 
 .cart-overlay {
@@ -432,7 +429,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* --- FOOTER --- */
 footer {
   text-align: center;
   padding: 2rem;

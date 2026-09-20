@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOCTURNE | Haute Couture & Urban Wear</title>
+  <title>IMPERIUM | High Fashion & Streetwear</title>
   
-  <!-- Enlace al archivo CSS -->
+  <!-- Enlace a tu CSS -->
   <link rel="stylesheet" href="./style.css">
   
-  <!-- Nuevas Fuentes de Google Fonts: Syne (Títulos/Logo) + Space Grotesk (Cuerpo) -->
+  <!-- Fuentes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -20,30 +20,41 @@
 
   <!-- Navegación -->
   <nav class="navbar">
-    <a href="#" class="logo">NOCTURNE</a>
+    <a href="#" class="logo">IMPERIUM</a>
     <div class="nav-links">
       <a href="#estilos">Estilos</a>
-      <a href="#catalogo">Colección</a>
-      <a href="#nosotros">Nosotros</a>
+<!-- CONTENEDOR DE IMÁGENES DE FONDO DE TU CARPETA imagenes -->
+    <div class="hero-slider">
+      <div class="slide active" style="background-image: url('./imagenes/imagen1.jpeg');"></div>
+      <div class="slide" style="background-image: url('./imagenes/imagen2.jpeg');"></div>
+      <div class="slide" style="background-image: url('./imagenes/imagen3.jpeg');"></div>
     </div>
-    <div class="cart-btn" onclick="toggleCart()">
-      <i data-lucide="shopping-bag"></i>
       <span class="cart-count" id="cart-count">0</span>
     </div>
   </nav>
 
-  <!-- Hero / Portada principal -->
+  <!-- Hero con Ruleta de Imágenes de Fondo -->
   <header class="hero">
+    
+    <!-- CONTENEDOR DE IMÁGENES DE FONDO DE TU CARPETA imagenes -->
+    <div class="hero-slider">
+      <div class="slide active" style="background-image: url('./imagenes/imagen1.jpg');"></div>
+      <div class="slide" style="background-image: url('./imagenes/imagen2.jpg');"></div>
+      <div class="slide" style="background-image: url('./imagenes/imagen3.jpg');"></div>
+    </div>
+
+    <!-- Capa de oscurecimiento para buen contraste del texto -->
     <div class="hero-overlay"></div>
+
     <div class="hero-content">
-      <p class="tagline">Lujo, Calle & Vanguardia</p>
-      <h1>REDEFINIENDO EL ESTILO</h1>
-      <p class="slogan">"Donde la elegancia de la noche se encuentra con la actitud de la calle."</p>
-      <a href="#catalogo" class="btn btn-primary">Explorar Colección</a>
+      <p class="tagline">Lujo, Calle & Elitismo</p>
+      <h1>EL IMPERIO DEL ESTILO</h1>
+      <p class="slogan">"La calle nos pertenece, el lujo es nuestra esencia."</p>
+      <a href="#catalogo" class="btn btn-primary">Ver Colección</a>
     </div>
   </header>
 
-  <!-- Categorías / Los 3 Estilos -->
+  <!-- Categorías -->
   <section id="estilos" class="categories">
     <h2 class="section-title">Nuestras Líneas</h2>
     <div class="categories-grid">
@@ -52,7 +63,7 @@
         <div class="card-bg urban"></div>
         <div class="card-content">
           <h3>URBAN</h3>
-          <p>Corte oversized, streetwear de alta gama y diseño conceptual.</p>
+          <p>Corte oversized, streetwear de alta gama y actitud pura.</p>
         </div>
       </div>
 
@@ -60,7 +71,7 @@
         <div class="card-bg luxury"></div>
         <div class="card-content">
           <h3>ELEGANT</h3>
-          <p>Sastrería contemporánea, siluetas pulidas y acabados premium.</p>
+          <p>Sastrería contemporánea y acabados dorados de lujo.</p>
         </div>
       </div>
 
@@ -68,17 +79,17 @@
         <div class="card-bg modern"></div>
         <div class="card-content">
           <h3>MODERN</h3>
-          <p>Diseños vanguardistas, piezas futuristas y minimalismo audaz.</p>
+          <p>Diseños vanguardistas, cortes oscuros y minimalismo audaz.</p>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Catálogo / Carrito simulado -->
+  <!-- Catálogo -->
   <section id="catalogo" class="catalog">
-    <h2 class="section-title">Demostración de Compra</h2>
-    <p class="section-subtitle">Selecciona una prenda de prueba para ver el funcionamiento del carrito</p>
+    <h2 class="section-title">Catálogo Imperium</h2>
+    <p class="section-subtitle">Selecciona tus prendas exclusivas</p>
     
     <div class="products-grid">
       <div class="product-card">
@@ -86,9 +97,9 @@
           <span class="badge">Urban</span>
         </div>
         <div class="product-info">
-          <h4>Chaqueta Cyberpunk Luxury</h4>
+          <h4>Chaqueta Imperium Cyberpunk</h4>
           <p class="price">$120.00 USD</p>
-          <button class="btn btn-secondary" onclick="addToCart('Chaqueta Cyberpunk Luxury', 120)">Añadir al Carrito</button>
+          <button class="btn btn-secondary" onclick="addToCart('Chaqueta Imperium Cyberpunk', 120)">Añadir al Carrito</button>
         </div>
       </div>
 
@@ -97,9 +108,9 @@
           <span class="badge">Elegant</span>
         </div>
         <div class="product-info">
-          <h4>Blazer Velvet Midnight</h4>
+          <h4>Blazer Dark Gold</h4>
           <p class="price">$250.00 USD</p>
-          <button class="btn btn-secondary" onclick="addToCart('Blazer Velvet Midnight', 250)">Añadir al Carrito</button>
+          <button class="btn btn-secondary" onclick="addToCart('Blazer Dark Gold', 250)">Añadir al Carrito</button>
         </div>
       </div>
 
@@ -108,15 +119,15 @@
           <span class="badge">Modern</span>
         </div>
         <div class="product-info">
-          <h4>Hoodie Gold Edition</h4>
+          <h4>Hoodie Imperium Gold</h4>
           <p class="price">$95.00 USD</p>
-          <button class="btn btn-secondary" onclick="addToCart('Hoodie Gold Edition', 95)">Añadir al Carrito</button>
+          <button class="btn btn-secondary" onclick="addToCart('Hoodie Imperium Gold', 95)">Añadir al Carrito</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sidebar del Carrito -->
+  <!-- Carrito Sidebar -->
   <aside class="cart-sidebar" id="cart-sidebar">
     <div class="cart-header">
       <h3>Tu Carrito</h3>
@@ -134,19 +145,30 @@
     </div>
   </aside>
 
-  <!-- Overlay del Carrito -->
+  <!-- Overlay Carrito -->
   <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
 
   <!-- Pie de página -->
   <footer id="nosotros">
-    <p>&copy; 2026 NOCTURNE. Todos los derechos reservados.</p>
+    <p>&copy; 2026 IMPERIUM. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Enlace al archivo JS -->
+  <!-- Script JS -->
   <script src="./script.js"></script>
   <script>
-    // Inicializar los iconos de Lucide
     lucide.createIcons();
+
+    // SCRIPT DE LA RULETA DE IMÁGENES (CADA 15 SEGUNDOS = 15000ms)
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextSlide, 15000); // 15 segundos exactos
   </script>
 </body>
 </html>
