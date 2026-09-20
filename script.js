@@ -1,12 +1,24 @@
 // OCULTAR PRELOADER AL CARGAR LA PÁGINA
-window.addEventListener('load', () => {
+function hidePreloader() {
   const preloader = document.getElementById('preloader');
-  if (preloader) {
+  if (preloader && !preloader.classList.contains('hidden')) {
+    preloader.classList.add('hidden');
+    // Elimina el elemento del DOM tras la animación para evitar interferencias
     setTimeout(() => {
-      preloader.classList.add('hidden');
-    }, 400); // Pequeña pausa para que la transición se aprecie de forma fluida
+      preloader.style.display = 'none';
+    }, 600);
   }
-});
+}
+
+// 1. Ocultar cuando la página termine de cargar
+window.addEventListener('load', hidePreloader);
+
+// 2. Si el evento 'load' ya pasó o tarda más de 1.5 segundos, ocultarlo por seguridad
+if (document.readyState === 'complete') {
+  hidePreloader();
+} else {
+  setTimeout(hidePreloader, 1500); 
+}
 
 // ==========================================
 // 1. CARGA DINÁMICA DE PRODUCTOS DESDE JSON
