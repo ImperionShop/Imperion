@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IMPERIUM | Resale & Curated Streetwear</title>
   
-  <link rel="stylesheet" href="./style-moderno.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-moderno.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,32 +48,13 @@
     </div>
   </nav>
 
-  <!-- HERO BANNER CON RULETA / SLIDER -->
-  <header class="hero">
-    <div class="hero-slider">
-      <div class="slide active" style="background-image: url('./imagenes/imagen6.jpeg');"></div>
-      <div class="slide" style="background-image: url('./imagenes/imagen4.jpeg');"></div>
-      <div class="slide" style="background-image: url('./imagenes/imagen5.jpeg');"></div>
-    </div>
-
-    <div class="hero-overlay"></div>
-
-    <!-- Flechas de navegación del Slider -->
-    <button class="slider-arrow prev" onclick="prevSlide()"><i data-lucide="chevron-left"></i></button>
-    <button class="slider-arrow next" onclick="nextSlide()"><i data-lucide="chevron-right"></i></button>
-
+  <!-- PORTADA HERO / BANNER CON TU FOTO REAL (IMAGEN6.JPEG) -->
+  <header id="inicio" class="hero" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.95) 0%, rgba(10, 10, 12, 0.6) 50%, rgba(10, 10, 12, 0.2) 100%), url('./imagenes/imagen6.jpeg'); background-size: cover; background-position: center top;">
     <div class="hero-content">
-      <p class="sub-label">ESTILO / ACTITUD / CALIDAD</p>
+      <p class="sub-label">ESTILO / ACTITUD / CURADURÍA</p>
       <h1>TU ESTILO,<br><span class="highlight-purple">TU IDENTIDAD</span></h1>
-      <p class="hero-text">Ropa urbana y moderna para quienes no siguen las reglas, sino su propio camino.</p>
+      <p class="hero-text">Ropa urbana, reventa seleccionada y prendas atemporales para quienes no siguen las reglas, sino su propio camino.</p>
       <a href="#catalogo" class="btn-purple">VER COLECCIÓN <i data-lucide="arrow-right"></i></a>
-    </div>
-
-    <!-- Indicadores de puntos abajo -->
-    <div class="slider-dots">
-      <span class="dot active" onclick="setSlide(0)"></span>
-      <span class="dot" onclick="setSlide(1)"></span>
-      <span class="dot" onclick="setSlide(2)"></span>
     </div>
   </header>
 
@@ -110,7 +92,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN PRODUCTOS DESTACADOS (CARGA DESDE productos.json) -->
+  <!-- SECCIÓN PRODUCTOS DESTACADOS (CARGA AUTOMÁTICA DESDE productos.json) -->
   <section id="catalogo" class="featured-products">
     <div class="section-title-bar">
       <div class="title-left">
@@ -120,7 +102,7 @@
       <a href="#" class="see-all">Ver todos <i data-lucide="arrow-right"></i></a>
     </div>
 
-    <!-- Grilla vacía: script.js renderiza aquí los productos reales -->
+    <!-- La grilla se llena dinámicamente con productos.json mediante script.js -->
     <div class="products-grid"></div>
   </section>
 
@@ -145,41 +127,14 @@
     </div>
   </aside>
 
+  <!-- FOOTER IMPERIUM -->
+  <footer id="contacto">
+    <p>&copy; 2026 IMPERIUM. Todos los derechos reservados.</p>
+  </footer>
+
   <script src="script.js"></script>
   <script>
     lucide.createIcons();
-
-    // Lógica del Slider Hero
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-
-    function showSlide(index) {
-      if (!slides.length) return;
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (dots[i]) dots[i].classList.remove('active');
-      });
-      slides[index].classList.add('active');
-      if (dots[index]) dots[index].classList.add('active');
-      currentSlide = index;
-    }
-
-    function nextSlide() {
-      let next = (currentSlide + 1) % slides.length;
-      showSlide(next);
-    }
-
-    function prevSlide() {
-      let prev = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(prev);
-    }
-
-    function setSlide(index) {
-      showSlide(index);
-    }
-
-    setInterval(nextSlide, 5000);
   </script>
 </body>
 </html>
