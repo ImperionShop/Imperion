@@ -63,16 +63,21 @@ button {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 900;
-  font-size: 1.4rem;
-  letter-spacing: 2px;
+  height: 70px;
+  width: 115px;
+  overflow: hidden;
 }
 
-.crown-icon {
-  width: 24px;
-  height: 24px;
-  stroke: var(--purple-primary);
+.logo img {
+  width: 115px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
 }
 
 .nav-links {
@@ -629,4 +634,111 @@ footer {
   left: 0;
   display: inline-block;
   margin-bottom: 12px;
+}
+/* ================================
+   PANTALLA DE CARGA IMPERION CLUB
+   ================================ */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #0a0a0c;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+}
+
+#loader.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-crown {
+  font-size: 58px;
+  line-height: 1;
+
+  color: #8b5cf6;
+
+  margin-bottom: 22px;
+
+  animation:
+    crownPulse 1.4s ease-in-out infinite,
+    crownFloat 2s ease-in-out infinite;
+}
+
+.loader-bar {
+  width: 180px;
+  height: 3px;
+
+  background: rgba(139, 92, 246, 0.15);
+
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.loader-progress {
+  width: 0%;
+  height: 100%;
+
+  background: #8b5cf6;
+
+  border-radius: 20px;
+
+  animation: loadingBar 1.7s ease-in-out forwards;
+}
+
+@keyframes loadingBar {
+  0% {
+    width: 0%;
+  }
+
+  70% {
+    width: 75%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes crownPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes crownFloat {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(139, 92, 246, 0));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.65));
+  }
 }

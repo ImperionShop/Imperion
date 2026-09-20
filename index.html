@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMPERIUM | Resale & Curated Streetwear</title>
-  
+  <title>IMPERION CLUB | Urban & Elegant Fashion</title>
+  <link rel="icon" type="image/jpeg" href="./imagenes/imperion-logo.jpeg">
+
   <link rel="stylesheet" href="style-moderno.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +15,23 @@
 </head>
 <body>
 
+<!-- PANTALLA DE CARGA -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-crown">♛</div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+</div>
+
   <!-- BARRA DE NAVEGACIÓN PRINCIPAL -->
   <nav class="navbar">
     <div class="nav-left">
-      <a href="#" class="logo">
-        <svg class="crown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
-        </svg>
-        <span>IMPERIUM</span>
-      </a>
-    </div>
+  <a href="#" class="logo">
+    <img src="./imagenes/imperion-logo.jpeg" alt="Imperion Club">
+  </a>
+</div>
 
     <div class="nav-links">
       <a href="#" class="active">Inicio</a>
@@ -158,5 +166,21 @@
   <script>
     lucide.createIcons();
   </script>
+
+<script>
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+
+    setTimeout(() => {
+      loader.classList.add("loader-hidden");
+
+      setTimeout(() => {
+        loader.remove();
+      }, 700);
+
+    }, 1700);
+  });
+</script>
+
 </body>
 </html>
