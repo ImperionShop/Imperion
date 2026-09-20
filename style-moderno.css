@@ -63,21 +63,27 @@ button {
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  width: 125px;
   height: 70px;
-  width: 115px;
+
   overflow: hidden;
+  text-decoration: none;
 }
 
 .logo img {
-  width: 115px;
-  height: 70px;
+  width: 125px;
+  height: 125px;
+
   object-fit: contain;
   display: block;
+
   transition: transform 0.3s ease;
 }
 
 .logo:hover img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .nav-links {
