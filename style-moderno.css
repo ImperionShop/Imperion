@@ -1237,4 +1237,9 @@ footer {
   border-radius: 4px;
   display: inline-block;
   vertical-align: middle;
+}.nav-logo-img {
+  height: 32px !important;
+  max-height: 32px !important;
+  width: auto !important;
+  object-fit: contain;
 }
