@@ -8,8 +8,8 @@
   --purple-glow: rgba(107, 33, 168, 0.4);
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
-  --font-heading: 'Cinzel', serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
 }
 
 /* --- RESET BÁSICO --- */
@@ -43,12 +43,12 @@ body {
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.9rem;
+  font-weight: 800;
   color: var(--primary-gold);
   text-decoration: none;
-  letter-spacing: 3px;
-  padding-left: 3px;
+  letter-spacing: 4px;
+  padding-left: 4px;
 }
 
 .nav-links a {
@@ -56,6 +56,7 @@ body {
   text-decoration: none;
   margin: 0 1.5rem;
   font-size: 0.9rem;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.3s;
@@ -112,46 +113,51 @@ body {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 850px;
   padding: 0 1rem;
 }
 
 .tagline {
   color: var(--primary-gold);
   text-transform: uppercase;
-  letter-spacing: 4px;
-  padding-left: 4px;
-  font-size: 0.9rem;
+  letter-spacing: 5px;
+  padding-left: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #fff, var(--primary-gold));
+  font-size: 3.8rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 30%, var(--primary-gold));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .slogan {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
-  font-style: italic;
-  margin-bottom: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 2.5rem;
 }
 
 /* --- BOTONES --- */
 .btn {
-  padding: 0.8rem 2rem;
+  padding: 0.9rem 2.2rem;
   border: 1px solid transparent;
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
@@ -160,12 +166,11 @@ body {
 .btn-primary {
   background: linear-gradient(45deg, var(--primary-gold), #b38f28);
   color: #000;
-  font-weight: 700;
 }
 
 .btn-primary:hover {
   background: var(--gold-hover);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 .btn-secondary {
@@ -187,8 +192,10 @@ body {
 /* --- SECCIONES --- */
 .section-title {
   font-family: var(--font-heading);
+  font-weight: 800;
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
   color: var(--primary-gold);
   margin-bottom: 0.5rem;
 }
@@ -196,6 +203,7 @@ body {
 .section-subtitle {
   text-align: center;
   color: var(--text-muted);
+  font-size: 0.95rem;
   margin-bottom: 3rem;
 }
 
@@ -244,19 +252,21 @@ body {
   position: absolute;
   bottom: 0;
   padding: 2rem;
-  background: linear-gradient(to top, rgba(10, 10, 12, 0.9), transparent);
+  background: linear-gradient(to top, rgba(10, 10, 12, 0.95), transparent);
   width: 100%;
 }
 
 .card-content h3 {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
   color: var(--primary-gold);
   margin-bottom: 0.5rem;
 }
 
 .card-content p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
@@ -292,9 +302,11 @@ body {
   background: var(--accent-purple);
   color: #fff;
   font-size: 0.75rem;
+  font-weight: 600;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .product-info {
@@ -303,12 +315,14 @@ body {
 
 .product-info h4 {
   font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .price {
   color: var(--primary-gold);
   font-weight: 700;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
@@ -342,6 +356,8 @@ body {
 
 .cart-header h3 {
   font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: 1px;
   color: var(--primary-gold);
 }
 
@@ -375,12 +391,14 @@ body {
 }
 
 .cart-item-title {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .cart-item-price {
   color: var(--primary-gold);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .cart-overlay {
