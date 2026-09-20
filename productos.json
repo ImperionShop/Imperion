@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Chamarra Urban Washed",
+    "condicion": "Condición: 9.5/10 (Talla L)",
+    "precio": 185,
+    "imagen": "./imagenes/imagen4.jpeg",
+    "badge": "NUEVO"
+  },
+  {
+    "id": 2,
+    "nombre": "Traje Sastre Noir Evening",
+    "condicion": "Condición: 10/10 (Talla S/M)",
+    "precio": 240,
+    "imagen": "./imagenes/imagen5.jpeg",
+    "badge": "NUEVO"
+  },
+  {
+    "id": 3,
+    "nombre": "Hoodie Heavy Gold Crest",
+    "condicion": "Condición: 9/10 (Talla M/L)",
+    "precio": 130,
+    "imagen": "./imagenes/imagen1.jpeg",
+    "badge": "REBAJA"
+  }
+]

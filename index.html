@@ -3,84 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMPERIUM | Resale & Curated Streetwear</title>
-  
-  <!-- PARA VOLVER AL DISEÑO ANTERIOR DORADO: cambia 'style-moderno.css' por 'style.css' -->
-  <link rel="stylesheet" href="./style-moderno.css">
-  
+  <title>Mi Tienda - Streetwear & Archive</title>
+
+  <!-- Fuentes de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Iconos Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-moderno.css">
 </head>
 <body>
 
   <!-- BARRA DE NAVEGACIÓN PRINCIPAL -->
-  <nav class="navbar">
+  <header class="navbar">
     <div class="nav-left">
-      <a href="#" class="logo">
-        <svg class="crown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
-        </svg>
-        <span>IMPERIUM</span>
-      </a>
+      <a href="#" class="logo">ARCHIVE<span>STORE</span></a>
     </div>
 
-    <div class="nav-links">
-      <a href="#" class="active">Inicio</a>
-      <a href="#catalogo">Tienda</a>
-      <a href="#categorias">Categorías</a>
-      <a href="#lookbook">Archivo</a>
-      <a href="#contacto">Contacto</a>
-    </div>
+    <nav class="nav-links">
+      <a href="#inicio">INICIO</a>
+      <a href="#categorias">CATEGORÍAS</a>
+      <a href="#catalogo">CATÁLOGO</a>
+    </nav>
 
     <div class="nav-right">
       <div class="search-box">
         <i data-lucide="search"></i>
-        <input type="text" placeholder="Buscar prendas o marcas...">
+        <input type="text" placeholder="Buscar prenda...">
       </div>
-      
-      <a href="#" class="nav-icon-btn"><i data-lucide="user"></i></a>
-      
-      <div class="cart-btn" onclick="toggleCart()">
+
+      <button class="cart-btn" onclick="toggleCart()">
         <i data-lucide="shopping-bag"></i>
-        <span class="cart-count" id="cart-count">0</span>
-      </div>
+        <span id="cart-count" class="cart-count">0</span>
+      </button>
     </div>
-  </nav>
+  </header>
 
-  <!-- HERO BANNER CON RULETA DE 5 FOTOS -->
-  <header class="hero">
-    <div class="hero-slider">
-      <div class="slide active" style="background-image: url('./imagenes/imagen4.jpeg');"></div>
-      <div class="slide" style="background-image: url('./imagenes/imagen5.jpeg');"></div>
-      <div class="slide" style="background-image: url('./imagenes/imagen1.jpeg');"></div>
-      <div class="slide" style="background-image: url('./imagenes/imagen2.jpeg');"></div>
-      <div class="slide" style="background-image: url('./imagenes/imagen3.jpeg');"></div>
-    </div>
+  <!-- SECCIÓN HERO / PORTADA (CARRUSEL SLIDER) -->
+  <section id="inicio" class="hero-slider">
+    <!-- Diapositivas de Fotos -->
+    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('./imagenes/imagen6.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('./imagenes/imagen4.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('./imagenes/imagen5.jpeg');"></div>
 
-    <div class="hero-overlay"></div>
-
-    <!-- Flechas de navegación del Slider -->
-    <button class="slider-arrow prev" onclick="prevSlide()"><i data-lucide="chevron-left"></i></button>
-    <button class="slider-arrow next" onclick="nextSlide()"><i data-lucide="chevron-right"></i></button>
-
+    <!-- Contenido encima del slider -->
     <div class="hero-content">
-      <p class="sub-label">ESTILO / ACTITUD / CURADURÍA</p>
-      <h1>TU ESTILO,<br><span class="highlight-purple">TU IDENTIDAD</span></h1>
-      <p class="hero-text">Ropa urbana, reventa seleccionada y prendas atemporales para quienes no siguen las reglas, sino su propio camino.</p>
+      <span class="badge-sub">ESTILO / ACTITUD / CURADURÍA</span>
+      <h1>TU ESTILO,<br><span>TU IDENTIDAD</span></h1>
+      <p>Ropa urbana, reventa seleccionada y prendas atemporales para quienes no siguen las reglas, sino su propio camino.</p>
       <a href="#catalogo" class="btn-purple">VER COLECCIÓN <i data-lucide="arrow-right"></i></a>
     </div>
 
-    <!-- Indicadores de puntos abajo -->
+    <!-- Flechas del Carrusel -->
+    <button class="slider-btn prev" onclick="moveSlide(-1)">&lsaquo;</button>
+    <button class="slider-btn next" onclick="moveSlide(1)">&rsaquo;</button>
+
+    <!-- Indicadores / Puntos -->
     <div class="slider-dots">
       <span class="dot active" onclick="setSlide(0)"></span>
       <span class="dot" onclick="setSlide(1)"></span>
       <span class="dot" onclick="setSlide(2)"></span>
-      <span class="dot" onclick="setSlide(3)"></span>
-      <span class="dot" onclick="setSlide(4)"></span>
     </div>
-  </header>
+  </section>
 
   <!-- ICONOS DE CATEGORÍAS (MINIMALISTA) -->
   <section id="categorias" class="quick-categories">
@@ -126,114 +115,40 @@
       <a href="#" class="see-all">Ver todos <i data-lucide="arrow-right"></i></a>
     </div>
 
-    <div class="products-grid">
-      <!-- Producto 1 (Urbano Cargo - Foto 4) -->
-      <div class="product-card">
-        <div class="product-img" style="background-image: url('./imagenes/imagen4.jpeg');">
-          <span class="badge-purple">NUEVO</span>
-          <button class="fav-btn"><i data-lucide="heart"></i></button>
-        </div>
-        <div class="product-details">
-          <h4>Chamarra Urban Washed + Cargo Denim</h4>
-          <span class="condition">Condición: 9.5/10 (Talla L)</span>
-          <div class="card-bottom">
-            <p class="price">$185.00 USD</p>
-            <button class="add-btn" onclick="addToCart('Chamarra Urban Washed', 185)">
-              <i data-lucide="plus"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Producto 2 (Sastrería Noir - Foto 5) -->
-      <div class="product-card">
-        <div class="product-img" style="background-image: url('./imagenes/imagen5.jpeg');">
-          <span class="badge-purple">NUEVO</span>
-          <button class="fav-btn"><i data-lucide="heart"></i></button>
-        </div>
-        <div class="product-details">
-          <h4>Traje Sastre Noir Evening Set</h4>
-          <span class="condition">Condición: 10/10 (Talla S/M)</span>
-          <div class="card-bottom">
-            <p class="price">$240.00 USD</p>
-            <button class="add-btn" onclick="addToCart('Traje Sastre Noir Evening', 240)">
-              <i data-lucide="plus"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Producto 3 (Hoodie Gold - Foto 1) -->
-      <div class="product-card">
-        <div class="product-img" style="background-image: url('./imagenes/imagen1.jpeg');">
-          <span class="badge-purple">NUEVO</span>
-          <button class="fav-btn"><i data-lucide="heart"></i></button>
-        </div>
-        <div class="product-details">
-          <h4>Hoodie Heavy Gold Crest</h4>
-          <span class="condition">Condición: 9/10 (Talla M/L)</span>
-          <div class="card-bottom">
-            <p class="price">$130.00 USD</p>
-            <button class="add-btn" onclick="addToCart('Hoodie Heavy Gold Crest', 130)">
-              <i data-lucide="plus"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- La grilla se llena dinámicamente con productos.json a través de script.js -->
+    <div class="products-grid"></div>
   </section>
 
-  <!-- GALERÍA LOOKBOOK ARCHIVE -->
-  <section id="lookbook" class="archive-gallery">
-    <div class="section-title-bar">
-      <div class="title-left">
-        <span class="purple-line"></span>
-        <h2>GALERÍA DE ARCHIVO</h2>
-      </div>
+  <!-- BARRA LATERAL DEL CARRITO -->
+  <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+  <aside id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>TU BOLSA DE COMPRAS</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
     </div>
-    
-    <div class="gallery-grid">
-      <div class="gallery-item item-large" style="background-image: url('./imagenes/imagen4.jpeg');"></div>
-      <div class="gallery-item" style="background-image: url('./imagenes/imagen5.jpeg');"></div>
-      <div class="gallery-item" style="background-image: url('./imagenes/imagen1.jpeg');"></div>
-      <div class="gallery-item" style="background-image: url('./imagenes/imagen2.jpeg');"></div>
-      <div class="gallery-item" style="background-image: url('./imagenes/imagen3.jpeg');"></div>
-    </div>
-  </section>
 
+    <div id="cart-items" class="cart-body">
+      <p class="empty-cart-msg">Tu bolsa está vacía por ahora.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>TOTAL:</span>
+        <span id="cart-total">$0.00 USD</span>
+      </div>
+      <button class="btn-checkout">PROCEDER AL PAGO</button>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 ARCHIVE STORE. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- ARCHIVOS JAVASCRIPT -->
+  <script src="script.js"></script>
   <script>
     lucide.createIcons();
-
-    // LÓGICA DEL SLIDER
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (dots[i]) dots[i].classList.remove('active');
-      });
-      slides[index].classList.add('active');
-      if (dots[index]) dots[index].classList.add('active');
-      currentSlide = index;
-    }
-
-    function nextSlide() {
-      let next = (currentSlide + 1) % slides.length;
-      showSlide(next);
-    }
-
-    function prevSlide() {
-      let prev = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(prev);
-    }
-
-    function setSlide(index) {
-      showSlide(index);
-    }
-
-    setInterval(nextSlide, 7000);
   </script>
 </body>
 </html>
