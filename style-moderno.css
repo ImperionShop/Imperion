@@ -589,7 +589,7 @@ footer {
 }/* ==========================================
    PANTALLA DE CARGA (PRELOADER)
    ========================================== */
-#preloader {
+.preloader-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -599,13 +599,10 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-#preloader.hidden {
-  opacity: 0;
-  visibility: hidden;
+  z-index: 999999;
+  /* Se desvanece solo a los 1.2s y desaparece por completo */
+  animation: fadeOutLoader 0.5s ease 1.2s forwards;
+  pointer-events: none; 
 }
 
 .loader-content {
@@ -616,16 +613,14 @@ footer {
   gap: 15px;
 }
 
-/* Control estricto del SVG */
-.loader-crown, 
-#preloader svg {
+.loader-crown {
   width: 50px !important;
   height: 50px !important;
   max-width: 50px !important;
   max-height: 50px !important;
   stroke: #8b5cf6;
   filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.8));
-  animation: pulseCrown 1.8s infinite ease-in-out;
+  animation: pulseCrown 1.2s infinite ease-in-out;
 }
 
 .loader-title {
@@ -651,16 +646,24 @@ footer {
   background: #8b5cf6;
   position: absolute;
   left: -100%;
-  animation: loadingBar 1.5s infinite cubic-bezier(0.65, 0, 0.35, 1);
+  animation: loadingBar 1s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Animaciones */
+@keyframes fadeOutLoader {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 @keyframes pulseCrown {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 @keyframes loadingBar {
