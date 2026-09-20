@@ -47,12 +47,15 @@
     </div>
   </nav>
 
-  <!-- CARRUSEL HERO / PORTADA SLIDER DE FONDO DECORATIVO -->
+<!-- CARRUSEL HERO / PORTADA (LAS 6 IMÁGENES) -->
   <header id="inicio" class="hero-slider">
-    <!-- Diapositivas de fondo decorativas -->
-    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen6.jpeg');"></div>
+    <!-- Las 6 diapositivas de fondo -->
+    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen1.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen2.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen3.jpeg');"></div>
     <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen4.jpeg');"></div>
     <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen5.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen6.jpeg');"></div>
 
     <!-- Contenido sobre la portada -->
     <div class="hero-content">
@@ -66,11 +69,14 @@
     <button class="slider-arrow prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
     <button class="slider-arrow next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
 
-    <!-- Indicadores de puntos -->
+    <!-- Indicadores de los 6 puntos -->
     <div class="slider-dots">
       <span class="dot active" onclick="setSlide(0)"></span>
       <span class="dot" onclick="setSlide(1)"></span>
       <span class="dot" onclick="setSlide(2)"></span>
+      <span class="dot" onclick="setSlide(3)"></span>
+      <span class="dot" onclick="setSlide(4)"></span>
+      <span class="dot" onclick="setSlide(5)"></span>
     </div>
   </header>
 

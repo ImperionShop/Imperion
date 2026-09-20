@@ -36,18 +36,15 @@ function renderizarProductos(productos) {
     const card = document.createElement('div');
     card.classList.add('product-card');
 
+    // Tarjeta sin imagen
     card.innerHTML = `
-      <div class="product-image">
-        <img src="${prod.imagen}" alt="${prod.nombre}">
-        ${prod.etiqueta ? `<span class="tag ${prod.etiqueta.toLowerCase()}">${prod.etiqueta}</span>` : ''}
-        <button class="fav-btn" onclick="toggleFav(this)"><i data-lucide="heart"></i></button>
-      </div>
       <div class="product-info">
+        ${prod.etiqueta ? `<span class="tag ${prod.etiqueta.toLowerCase()}">${prod.etiqueta}</span>` : ''}
         <h3>${prod.nombre}</h3>
         <p class="condition">Condición: ${prod.condicion} | Talla: ${prod.talla}</p>
         <div class="product-footer">
           <span class="price">$${prod.precio.toFixed(2)} USD</span>
-          <button class="add-btn" onclick="agregarAlCarrito(${prod.id}, '${prod.nombre}', ${prod.precio}, '${prod.imagen}')">
+          <button class="add-btn" onclick="agregarAlCarrito(${prod.id}, '${prod.nombre}', ${prod.precio}, '')">
             <i data-lucide="plus"></i>
           </button>
         </div>
