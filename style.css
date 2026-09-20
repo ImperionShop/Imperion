@@ -814,3 +814,96 @@ footer {
   font-size: 0.75rem;
   letter-spacing: 1px;
 }
+/* ==========================================
+   ADAPTACIÓN RESPONSIVE / MÓVIL (CELULARES)
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Ajustes del Menú y Header */
+  .navbar {
+    padding: 1rem 4%;
+    top: 25px;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+  }
+
+  .nav-links {
+    display: none; /* Ocultamos links extensos en pantallas pequeñas para limpiar la vista */
+  }
+
+  /* Ajustes del Hero Principal */
+  .hero h1 {
+    font-size: 2.3rem;
+    letter-spacing: 2px;
+  }
+
+  .slogan {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .crown-badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Secciones y Grillas */
+  .categories, .catalog, .lookbook, .vip-club {
+    padding: 4rem 4%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .features-bar {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 5%;
+  }
+
+  .categories-grid, .products-grid, .lookbook-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .look-item.large {
+    grid-column: span 1;
+  }
+
+  /* Carrito Desplegable */
+  .cart-sidebar {
+    max-width: 100%; /* En celular ocupa todo el ancho */
+  }
+
+  .vip-form {
+    flex-direction: column;
+  }
+
+  .vip-form input, .vip-form button {
+    width: 100%;
+  }
+}
+.product-image-container {
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.2rem;
+  overflow: hidden;
+}

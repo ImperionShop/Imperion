@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMPERIUM | Haute Couture & High Fashion</title>
+  <title>IMPERIUM | Luxury Resale & Curated Vault</title>
   
   <link rel="stylesheet" href="./style.css">
   
@@ -20,8 +20,8 @@
   <!-- CINTILLO TOP VIP (ANNOUNCEMENT BAR) -->
   <div class="top-bar">
     <div class="marquee-track">
-      <span>• IMPERIUM PRIVATE CLUB • ENVIOS VIP INTERNACIONALES • EDICIONES LIMITADAS DE ALTA COSTURA • IMPERIUM PRIVATE CLUB • ENVIOS VIP INTERNACIONALES • EDICIONES LIMITADAS DE ALTA COSTURA</span>
-      <span>• IMPERIUM PRIVATE CLUB • ENVIOS VIP INTERNACIONALES • EDICIONES LIMITADAS DE ALTA COSTURA • IMPERIUM PRIVATE CLUB • ENVIOS VIP INTERNACIONALES • EDICIONES LIMITADAS DE ALTA COSTURA</span>
+      <span>• IMPERIUM RESALE VAULT • PIEZAS 100% AUTÉNTICAS VERIFICADAS • CURADURÍA EXCLUSIVA • UNIDADES ÚNICAS DISPONIBLES • IMPERIUM RESALE VAULT • PIEZAS 100% AUTÉNTICAS VERIFICADAS</span>
+      <span>• IMPERIUM RESALE VAULT • PIEZAS 100% AUTÉNTICAS VERIFICADAS • CURADURÍA EXCLUSIVA • UNIDADES ÚNICAS DISPONIBLES • IMPERIUM RESALE VAULT • PIEZAS 100% AUTÉNTICAS VERIFICADAS</span>
     </div>
   </div>
 
@@ -29,10 +29,10 @@
   <nav class="navbar">
     <a href="#" class="logo">IMPERIUM</a>
     <div class="nav-links">
-      <a href="#colecciones">Colecciones</a>
-      <a href="#catalogo">Catálogo VIP</a>
-      <a href="#lookbook">Lookbook</a>
-      <a href="#privilege">Beneficios</a>
+      <a href="#colecciones">Selección</a>
+      <a href="#catalogo">Drop Disponible</a>
+      <a href="#lookbook">Archive Gallery</a>
+      <a href="#privilege">Garantía</a>
     </div>
     <div class="nav-actions">
       <div class="cart-btn" onclick="toggleCart()">
@@ -42,155 +42,160 @@
     </div>
   </nav>
 
-  <!-- Hero Principal / Ruleta de Fondos -->
+  <!-- Hero Principal / Ruleta de 5 Fondos -->
   <header class="hero">
     <div class="hero-slider">
       <div class="slide active" style="background-image: url('./imagenes/imagen1.jpeg');"></div>
       <div class="slide" style="background-image: url('./imagenes/imagen2.jpeg');"></div>
       <div class="slide" style="background-image: url('./imagenes/imagen3.jpeg');"></div>
+      <div class="slide" style="background-image: url('./imagenes/imagen4.jpeg');"></div>
+      <div class="slide" style="background-image: url('./imagenes/imagen5.jpeg');"></div>
     </div>
 
-    <!-- Filtro de Oscurecimiento y Viñeta -->
+    <!-- Filtro de Oscurecimiento -->
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
       <div class="crown-badge">
-        <i data-lucide="crown"></i>
-        <span>MAISON DE LUXE</span>
+        <i data-lucide="shield-check"></i>
+        <span>CURATED ARCHIVE & RESALE</span>
       </div>
-      <p class="tagline">Exclusividad & Elegancia Eterna</p>
-      <h1>EL IMPERIO DEL ESTILO</h1>
-      <p class="slogan">"Donde la atemporalidad del lujo se encuentra con la sofisticación de la calle."</p>
+      <p class="tagline">Piezas Únicas & Ediciones Limitadas</p>
+      <h1>EL ARCHIVO DEL ESTILO</h1>
+      <p class="slogan">"Curaduría exigente de prendas de reventa, streetwear exclusivo y tesoros vintage seleccionados."</p>
       <div class="hero-buttons">
-        <a href="#catalogo" class="btn btn-primary">Descubrir Colección</a>
-        <a href="#lookbook" class="btn btn-outline">Ver Lookbook</a>
+        <a href="#catalogo" class="btn btn-primary">Ver Drops Disponibles</a>
+        <a href="#lookbook" class="btn btn-outline">Explorar Archivo</a>
       </div>
     </div>
   </header>
 
-  <!-- BENECIFICOS / EXPERIENCIA VIP -->
+  <!-- GARANTÍA & SERVICIOS DE RESALE -->
   <section id="privilege" class="features-bar">
     <div class="feature-item">
       <i data-lucide="shield-check"></i>
       <div>
-        <h4>Autenticidad Garantizada</h4>
-        <p>Certificados numerados de alta costura</p>
+        <h4>Verificación de Autenticidad</h4>
+        <p>Inspección rigurosa de cada prenda previa a la venta</p>
       </div>
     </div>
     <div class="feature-item">
-      <i data-lucide="globe"></i>
+      <i data-lucide="gem"></i>
       <div>
-        <h4>Envío Express Global</h4>
-        <p>Entrega prioritaria asegurada</p>
+        <h4>Estado & Condición Transparentes</h4>
+        <p>Clasificación real del estado de conservación</p>
       </div>
     </div>
     <div class="feature-item">
-      <i data-lucide="sparkles"></i>
+      <i data-lucide="truck"></i>
       <div>
-        <h4>Atención Concierge</h4>
-        <p>Asesoría personalizada 24/7</p>
+        <h4>Envíos Seguros</h4>
+        <p>Empaque protegido para prendas de colección</p>
       </div>
     </div>
   </section>
 
-  <!-- Colecciones Principales -->
+  <!-- Categorías de Curaduría con Imágenes Reales -->
   <section id="colecciones" class="categories">
     <div class="section-header">
-      <span class="section-gold-label">HAUTE COUTURE</span>
-      <h2 class="section-title">Líneas Exclusivas</h2>
-      <p class="section-subtitle">Piezas de confección limitada para quienes dominan la elegancia</p>
+      <span class="section-gold-label">CURATED SELECTION</span>
+      <h2 class="section-title">Categorías de Archivo</h2>
+      <p class="section-subtitle">Encuentra prendas exclusivas con historia y personalidad</p>
     </div>
 
     <div class="categories-grid">
       <div class="category-card">
-        <div class="card-bg luxury"></div>
+        <div class="card-bg" style="background-image: url('./imagenes/imagen4.jpeg'); background-size: cover; background-position: center;"></div>
         <div class="card-content">
-          <span class="card-tag">SELECCIÓN IMPERIAL</span>
-          <h3>ROYAL GOLD</h3>
-          <p>Sastrería contemporánea con finos acabados en detalles dorados de 24k sintéticos.</p>
-          <a href="#catalogo" class="card-link">Explorar Línea <i data-lucide="arrow-right"></i></a>
+          <span class="card-tag">STREETWEAR ARCHIVE</span>
+          <h3>URBAN CARGO & JACKETS</h3>
+          <p>Chamarra casual oversized y jeans cargo en tonalidad washed. Estilo urbano atemporal.</p>
+          <a href="#catalogo" class="card-link">Ver Selección <i data-lucide="arrow-right"></i></a>
         </div>
       </div>
 
       <div class="category-card">
-        <div class="card-bg classic"></div>
+        <div class="card-bg" style="background-image: url('./imagenes/imagen5.jpeg'); background-size: cover; background-position: center;"></div>
         <div class="card-content">
-          <span class="card-tag">EDICIÓN NOCTURNA</span>
-          <h3>NOIR CLASSIC</h3>
-          <p>Siluetas estructuradas en tonos oscuros, sobriedad y la máxima pureza del diseño.</p>
-          <a href="#catalogo" class="card-link">Explorar Línea <i data-lucide="arrow-right"></i></a>
+          <span class="card-tag">NOIR TAILORED</span>
+          <h3>BLACK SUITS & BLAZERS</h3>
+          <p>Sastrería negra de alta calidad con solapa clásica y corte estilizado de noche.</p>
+          <a href="#catalogo" class="card-link">Ver Selección <i data-lucide="arrow-right"></i></a>
         </div>
       </div>
 
       <div class="category-card">
-        <div class="card-bg modern"></div>
+        <div class="card-bg" style="background-image: url('./imagenes/imagen1.jpeg'); background-size: cover; background-position: center;"></div>
         <div class="card-content">
-          <span class="card-tag">LEGADO URBANO</span>
-          <h3>HERITAGE</h3>
-          <p>Prendas icónicas de corte oversized y acabados pesados diseñadas para destacar.</p>
-          <a href="#catalogo" class="card-link">Explorar Línea <i data-lucide="arrow-right"></i></a>
+          <span class="card-tag">PIEZAS RARE / 1 OF 1</span>
+          <h3>GOLD ACCENTS & HOODIES</h3>
+          <p>Sudaderas y prendas pesadas con acabados sutiles y entalle moderno.</p>
+          <a href="#catalogo" class="card-link">Ver Selección <i data-lucide="arrow-right"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Catálogo de Productos VIP -->
+  <!-- Catálogo de Productos Reales -->
   <section id="catalogo" class="catalog">
     <div class="section-header">
-      <span class="section-gold-label">PIEZAS SELECCIONADAS</span>
-      <h2 class="section-title">Catálogo Imperium</h2>
-      <p class="section-subtitle">Garantiza tus piezas exclusivas antes de agotarse</p>
+      <span class="section-gold-label">STOCK DISPONIBLE</span>
+      <h2 class="section-title">Drop Activo</h2>
+      <p class="section-subtitle">Solo 1 unidad disponible por pieza. Fotografías 100% reales de las prendas.</p>
     </div>
     
     <div class="products-grid">
       
+      <!-- Producto 1: Foto 4 -->
       <div class="product-card">
-        <div class="product-image">
-          <span class="badge">Royal Gold</span>
+        <div class="product-image-container" style="background-image: url('./imagenes/imagen4.jpeg');">
+          <span class="badge">Condición: 9.5/10</span>
           <div class="product-overlay-action">
-            <button class="quick-view-btn" onclick="addToCart('Blazer Imperium Signature', 280)"><i data-lucide="eye"></i> Vista Rápida</button>
+            <button class="quick-view-btn" onclick="addToCart('Chamarra Urban Washed + Cargo Denim Set', 185)"><i data-lucide="eye"></i> Añadir</button>
           </div>
         </div>
         <div class="product-info">
-          <h4>Blazer Imperium Signature</h4>
-          <p class="product-desc">Corte estructurado con botones grabados y forro de seda.</p>
+          <h4>Chamarra Urban + Cargo Set</h4>
+          <p class="product-desc">Chamarra ligera de corte amplio y jeans estilo cargo celeste. Talla L.</p>
           <div class="product-footer">
-            <p class="price">$280.00 USD</p>
-            <button class="btn btn-secondary" onclick="addToCart('Blazer Imperium Signature', 280)">Añadir al Carrito</button>
+            <p class="price">$185.00 USD</p>
+            <button class="btn btn-secondary" onclick="addToCart('Chamarra Urban Washed + Cargo Denim Set', 185)">Comprar Pieza</button>
           </div>
         </div>
       </div>
 
+      <!-- Producto 2: Foto 5 -->
       <div class="product-card">
-        <div class="product-image">
-          <span class="badge">Noir Classic</span>
+        <div class="product-image-container" style="background-image: url('./imagenes/imagen5.jpeg');">
+          <span class="badge">Condición: 10/10 (Excelente)</span>
           <div class="product-overlay-action">
-            <button class="quick-view-btn" onclick="addToCart('Abrigo Velvet Black Gold', 350)"><i data-lucide="eye"></i> Vista Rápida</button>
+            <button class="quick-view-btn" onclick="addToCart('Traje Sastre Noir Evening Edition', 240)"><i data-lucide="eye"></i> Añadir</button>
           </div>
         </div>
         <div class="product-info">
-          <h4>Abrigo Velvet Black Gold</h4>
-          <p class="product-desc">Terciopelo denso de alta costura con detalles metálicos.</p>
+          <h4>Traje Sastre Noir Evening</h4>
+          <p class="product-desc">Saco entallado negro con pantalón ancho de vestir. Calidad de gala. Talla S/M.</p>
           <div class="product-footer">
-            <p class="price">$350.00 USD</p>
-            <button class="btn btn-secondary" onclick="addToCart('Abrigo Velvet Black Gold', 350)">Añadir al Carrito</button>
+            <p class="price">$240.00 USD</p>
+            <button class="btn btn-secondary" onclick="addToCart('Traje Sastre Noir Evening Edition', 240)">Comprar Pieza</button>
           </div>
         </div>
       </div>
 
+      <!-- Producto 3: Foto 1 -->
       <div class="product-card">
-        <div class="product-image">
-          <span class="badge">Heritage</span>
+        <div class="product-image-container" style="background-image: url('./imagenes/imagen1.jpeg');">
+          <span class="badge">Condición: 9/10</span>
           <div class="product-overlay-action">
-            <button class="quick-view-btn" onclick="addToCart('Camisa Silk Gold Edition', 160)"><i data-lucide="eye"></i> Vista Rápida</button>
+            <button class="quick-view-btn" onclick="addToCart('Hoodie Oversized Gold Crest', 130)"><i data-lucide="eye"></i> Añadir</button>
           </div>
         </div>
         <div class="product-info">
-          <h4>Camisa Silk Gold Edition</h4>
-          <p class="product-desc">Seda pesada con caída fluida y bordado sutil en cuello.</p>
+          <h4>Hoodie Oversized Gold Crest</h4>
+          <p class="product-desc">Algodón pesado negro con detalles dorados en hombros. Talla M/L.</p>
           <div class="product-footer">
-            <p class="price">$160.00 USD</p>
-            <button class="btn btn-secondary" onclick="addToCart('Camisa Silk Gold Edition', 160)">Añadir al Carrito</button>
+            <p class="price">$130.00 USD</p>
+            <button class="btn btn-secondary" onclick="addToCart('Hoodie Oversized Gold Crest', 130)">Comprar Pieza</button>
           </div>
         </div>
       </div>
@@ -198,45 +203,57 @@
     </div>
   </section>
 
-  <!-- LOOKBOOK / GALERÍA VISUAL DE IMPACTO -->
+  <!-- ARCHIVE GALLERY / LOOKBOOK COMPLETO (5 FOTOS) -->
   <section id="lookbook" class="lookbook">
     <div class="section-header">
-      <span class="section-gold-label">VISUAL GALLERY</span>
-      <h2 class="section-title">Lookbook Haute Couture</h2>
-      <p class="section-subtitle">Explora la estética de nuestras últimas campañas</p>
+      <span class="section-gold-label">ARCHIVE LOOKBOOK</span>
+      <h2 class="section-title">Galería de Estilos</h2>
+      <p class="section-subtitle">Aprecia cómo lucen nuestras prendas en encuadres reales</p>
     </div>
 
     <div class="lookbook-grid">
-      <div class="look-item large" style="background-image: url('./imagenes/imagen1.jpeg');">
+      <div class="look-item large" style="background-image: url('./imagenes/imagen4.jpeg');">
         <div class="look-content">
-          <span>COLECCIÓN '26</span>
-          <h3>Imperium High Life</h3>
+          <span>DROP #02</span>
+          <h3>Urban Cargo & Street Vibe</h3>
+        </div>
+      </div>
+      <div class="look-item" style="background-image: url('./imagenes/imagen5.jpeg');">
+        <div class="look-content">
+          <span>ELEGANCE ARCHIVE</span>
+          <h3>Noir Evening Tailored</h3>
+        </div>
+      </div>
+      <div class="look-item" style="background-image: url('./imagenes/imagen1.jpeg');">
+        <div class="look-content">
+          <span>GOLD LINE</span>
+          <h3>Luxury Streetwear</h3>
         </div>
       </div>
       <div class="look-item" style="background-image: url('./imagenes/imagen2.jpeg');">
         <div class="look-content">
-          <span>NOIR EDITION</span>
-          <h3>Detalles de Lujo</h3>
+          <span>DETAILS</span>
+          <h3>Corte & Texturas</h3>
         </div>
       </div>
       <div class="look-item" style="background-image: url('./imagenes/imagen3.jpeg');">
         <div class="look-content">
-          <span>CULTURE</span>
-          <h3>Elegancia Urbana</h3>
+          <span>CLASSIC</span>
+          <h3>Estilo Atemporal</h3>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CLUB VIP / NEWSLETTER -->
+  <!-- CLUB IMPERIUM / NOTIFICACIONES DE DROPS -->
   <section class="vip-club">
     <div class="vip-card">
-      <i data-lucide="gem" class="vip-icon"></i>
-      <h2>ÚNETE AL CLUB PRIVADO IMPERIUM</h2>
-      <p>Accede antes que nadie a lanzamientos limitados, desfiles privados y ofertas reservadas exclusivamente para miembros.</p>
-      <form class="vip-form" onsubmit="event.preventDefault(); alert('¡Bienvenido al Club Privado Imperium!');">
-        <input type="email" placeholder="Ingresa tu correo electrónico VIP..." required>
-        <button type="submit" class="btn btn-primary">Solicitar Acceso</button>
+      <i data-lucide="bell" class="vip-icon"></i>
+      <h2>ALERTAS DE DROPS SECRETOS</h2>
+      <p>Nuestras piezas son de **unidad única**. Regístrate para recibir una notificación VIP minutos antes de publicar un nuevo lote de ropa.</p>
+      <form class="vip-form" onsubmit="event.preventDefault(); alert('¡Te has registrado para las alertas de Drops!');">
+        <input type="email" placeholder="Ingresa tu correo para avisos de Drops..." required>
+        <button type="submit" class="btn btn-primary">Recibir Alertas</button>
       </form>
     </div>
   </section>
@@ -244,39 +261,39 @@
   <!-- Carrito Sidebar -->
   <aside class="cart-sidebar" id="cart-sidebar">
     <div class="cart-header">
-      <h3>Tu Carrito VIP</h3>
+      <h3>Tu Selección VIP</h3>
       <button class="close-btn" onclick="toggleCart()">&times;</button>
     </div>
     <div class="cart-items" id="cart-items">
-      <p class="empty-cart-msg">Tu bolsa de compra está vacía por ahora.</p>
+      <p class="empty-cart-msg">Aún no has agregado prendas a tu bolsa.</p>
     </div>
     <div class="cart-footer">
       <div class="total-row">
-        <span>Subtotal:</span>
+        <span>Total:</span>
         <span id="cart-total">$0.00 USD</span>
       </div>
-      <button class="btn btn-primary btn-block">Procesar Orden VIP</button>
+      <button class="btn btn-primary btn-block">Reservar Piezas</button>
     </div>
   </aside>
 
   <!-- Overlay Carrito -->
   <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
 
-  <!-- Pie de Página Premium -->
+  <!-- Pie de Página -->
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
         <a href="#" class="logo">IMPERIUM</a>
-        <p>Maison de Haute Couture & Luxury Streetwear.</p>
+        <p>Curated Resale, Thrift & Vintage Streetwear Vault.</p>
       </div>
       <div class="footer-links">
-        <a href="#colecciones">Colecciones</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#lookbook">Lookbook</a>
+        <a href="#colecciones">Selección</a>
+        <a href="#catalogo">Drops</a>
+        <a href="#lookbook">Archivo</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 IMPERIUM MAISON. Todos los derechos reservados.</p>
+      <p>&copy; 2026 IMPERIUM RESALE VAULT. Todos los derechos reservados.</p>
     </div>
   </footer>
 
@@ -284,7 +301,7 @@
   <script>
     lucide.createIcons();
 
-    // RULETA DE IMÁGENES DE FONDO (15 SEGUNDOS = 15000ms)
+    // RULETA AUTOMÁTICA DE 5 FOTOS (15 SEGUNDOS)
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 
