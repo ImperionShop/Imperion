@@ -1,161 +1,164 @@
-// Estado del Carrito
-let cart = [];
-
-// Cargar productos automáticamente al abrir la página
-document.addEventListener('DOMContentLoaded', () => {
+// ==========================================
+// 1. CARGA DINÁMICA DE PRODUCTOS DESDE JSON
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
   cargarProductos();
 });
 
-// Función para leer el archivo productos.json
-async function cargarProductos() {
-  const contenedor = document.querySelector('.products-grid');
-  if (!contenedor) return;
-
-  try {
-    const respuesta = await fetch('./productos.json');
-    const productos = await respuesta.json();
-
-    let htmlProductos = '';
-
-    productos.forEach(prod => {
-      htmlProductos += `
-        <div class="product-card">
-          <div class="product-img" style="background-image: url('${prod.imagen}');">
-            <span class="badge-purple">${prod.badge || 'NUEVO'}</span>
-            <button class="fav-btn"><i data-lucide="heart"></i></button>
-          </div>
-          <div class="product-details">
-            <h4>${prod.nombre}</h4>
-            <span class="condition">${prod.condicion}</span>
-            <div class="card-bottom">
-              <p class="price">$${prod.precio}.00 USD</p>
-              <button class="add-btn" onclick="addToCart('${prod.nombre}', ${prod.precio})">
-                <i data-lucide="plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
+function cargarProductos() {
+  fetch('./productos.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Error al cargar productos.json');
+      return response.json();
+    })
+    .then(data => renderizarProductos(data))
+    .catch(error => {
+      console.error('Error al cargar el catálogo:', error);
+      const grid = document.querySelector('.products-grid');
+      if (grid) {
+        grid.innerHTML = '<p style="color: #a1a1aa; text-align: center; grid-column: 1/-1;">Recuerda ejecutar Live Server para cargar productos.json</p>';
+      }
     });
+}
 
-    contenedor.innerHTML = htmlProductos;
+function renderizarProductos(productos) {
+  const grid = document.querySelector('.products-grid');
+  if (!grid) return;
 
-    // Renderizar iconos de Lucide nuevamente para los nuevos botones
-    if (window.lucide) {
-      lucide.createIcons();
-    }
+  grid.innerHTML = '';
 
-  } catch (error) {
-    console.error('Error al cargar productos.json:', error);
+  if (productos.length === 0) {
+    grid.innerHTML = '<p style="color: #a1a1aa; text-align: center; grid-column: 1/-1; padding: 40px 0;">No hay productos disponibles por ahora.</p>';
+    return;
   }
+
+  productos.forEach(prod => {
+    const card = document.createElement('div');
+    card.classList.add('product-card');
+
+    card.innerHTML = `
+      <div class="product-image">
+        <img src="${prod.imagen}" alt="${prod.nombre}">
+        ${prod.etiqueta ? `<span class="tag ${prod.etiqueta.toLowerCase()}">${prod.etiqueta}</span>` : ''}
+        <button class="fav-btn" onclick="toggleFav(this)"><i data-lucide="heart"></i></button>
+      </div>
+      <div class="product-info">
+        <h3>${prod.nombre}</h3>
+        <p class="condition">Condición: ${prod.condicion} | Talla: ${prod.talla}</p>
+        <div class="product-footer">
+          <span class="price">$${prod.precio.toFixed(2)} USD</span>
+          <button class="add-btn" onclick="agregarAlCarrito(${prod.id}, '${prod.nombre}', ${prod.precio}, '${prod.imagen}')">
+            <i data-lucide="plus"></i>
+          </button>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+
+  if (window.lucide) lucide.createIcons();
 }
 
 // ==========================================
-// FUNCIONES DEL CARRITO DE COMPRAS
+// 2. LÓGICA DEL CARRITO DE COMPRAS
 // ==========================================
+let carrito = [];
 
 function toggleCart() {
   const sidebar = document.getElementById('cart-sidebar');
   const overlay = document.getElementById('cart-overlay');
-  
   if (sidebar && overlay) {
     sidebar.classList.toggle('active');
     overlay.classList.toggle('active');
   }
 }
 
-function addToCart(name, price) {
-  const existingItem = cart.find(item => item.name === name);
-
-  if (existingItem) {
-    existingItem.quantity += 1;
+function agregarAlCarrito(id, nombre, precio, imagen) {
+  const existe = carrito.find(item => item.id === id);
+  if (existe) {
+    existe.cantidad++;
   } else {
-    cart.push({
-      name: name,
-      price: price,
-      quantity: 1
-    });
+    carrito.push({ id, nombre, precio, imagen, cantidad: 1 });
   }
-
-  updateCartUI();
+  actualizarCarritoUI();
   toggleCart();
 }
 
-function removeFromCart(name) {
-  cart = cart.filter(item => item.name !== name);
-  updateCartUI();
+function eliminarDelCarrito(id) {
+  carrito = carrito.filter(item => item.id !== id);
+  actualizarCarritoUI();
 }
 
-function updateCartUI() {
-  const cartItemsContainer = document.getElementById('cart-items');
+function actualizarCarritoUI() {
+  const cartBody = document.getElementById('cart-items');
   const cartCount = document.getElementById('cart-count');
   const cartTotal = document.getElementById('cart-total');
 
-  if (!cartItemsContainer || !cartCount || !cartTotal) return;
+  if (!cartBody) return;
 
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  cartCount.textContent = totalItems;
-
-  if (cart.length === 0) {
-    cartItemsContainer.innerHTML = '<p class="empty-cart-msg" style="color: var(--text-muted); font-size: 0.85rem; padding: 1rem 0;">Tu bolsa está vacía por ahora.</p>';
-    cartTotal.textContent = '$0.00 USD';
+  if (carrito.length === 0) {
+    cartBody.innerHTML = '<p class="empty-cart-msg">Tu bolsa está vacía por ahora.</p>';
+    if (cartCount) cartCount.textContent = '0';
+    if (cartTotal) cartTotal.textContent = '$0.00 USD';
     return;
   }
 
-  let itemsHTML = '';
-  let totalPrice = 0;
+  cartBody.innerHTML = '';
+  let total = 0;
+  let cantidadTotal = 0;
 
-  cart.forEach(item => {
-    const itemTotal = item.price * item.quantity;
-    totalPrice += itemTotal;
+  carrito.forEach(item => {
+    total += item.precio * item.cantidad;
+    cantidadTotal += item.cantidad;
 
-    itemsHTML += `
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-dark); padding-bottom: 0.8rem;">
-        <div>
-          <h5 style="font-size: 0.85rem; color: #fff; margin-bottom: 0.2rem;">${item.name}</h5>
-          <p style="font-size: 0.75rem; color: var(--purple-accent); font-weight: 600;">$${item.price}.00 USD x ${item.quantity}</p>
-        </div>
-        <button onclick="removeFromCart('${item.name}')" style="background: none; border: none; color: #ff5555; cursor: pointer; font-size: 1.2rem;">&times;</button>
+    const itemEl = document.createElement('div');
+    itemEl.classList.add('cart-item');
+    itemEl.innerHTML = `
+      <img src="${item.imagen}" alt="${item.nombre}">
+      <div class="item-details">
+        <h4>${item.nombre}</h4>
+        <p>$${item.precio.toFixed(2)} x ${item.cantidad}</p>
       </div>
+      <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">&times;</button>
     `;
+    cartBody.appendChild(itemEl);
   });
 
-  cartItemsContainer.innerHTML = itemsHTML;
-  cartTotal.textContent = `$${totalPrice}.00 USD`;
+  if (cartCount) cartCount.textContent = cantidadTotal;
+  if (cartTotal) cartTotal.textContent = `$${total.toFixed(2)} USD`;
 }
+
+function toggleFav(btn) {
+  btn.classList.toggle('active');
+}
+
 // ==========================================
-// LÓGICA DEL CARRUSEL / SLIDER
+// 3. CARRUSEL / SLIDER DE PORTADA
 // ==========================================
 let currentSlide = 0;
 
 function showSlide(index) {
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
-  
-  if (slides.length === 0) return;
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  if (!slides.length) return;
 
   if (index >= slides.length) currentSlide = 0;
   else if (index < 0) currentSlide = slides.length - 1;
   else currentSlide = index;
 
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === currentSlide);
-  });
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === currentSlide);
-  });
+  slides.forEach((slide, i) => slide.classList.toggle('active', i === currentSlide));
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
 }
 
-function moveSlide(direction) {
-  showSlide(currentSlide + direction);
+function moveSlide(step) {
+  showSlide(currentSlide + step);
 }
 
 function setSlide(index) {
   showSlide(index);
 }
 
-// Cambio automático cada 5 segundos
 setInterval(() => {
   moveSlide(1);
 }, 5000);

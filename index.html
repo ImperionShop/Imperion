@@ -47,14 +47,14 @@
     </div>
   </nav>
 
-  <!-- CARRUSEL HERO / PORTADA SLIDER DE FONDO -->
+  <!-- CARRUSEL HERO / PORTADA SLIDER DE FONDO DECORATIVO -->
   <header id="inicio" class="hero-slider">
-    <!-- Diapositivas de fondo del Carrusel -->
+    <!-- Diapositivas de fondo decorativas -->
     <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen6.jpeg');"></div>
     <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen4.jpeg');"></div>
     <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen5.jpeg');"></div>
 
-    <!-- Contenido encima del slider -->
+    <!-- Contenido sobre la portada -->
     <div class="hero-content">
       <p class="sub-label">ESTILO / ACTITUD / CURADURÍA</p>
       <h1>TU ESTILO,<br><span class="highlight-purple">TU IDENTIDAD</span></h1>
@@ -62,11 +62,11 @@
       <a href="#catalogo" class="btn-purple">VER COLECCIÓN <i data-lucide="arrow-right"></i></a>
     </div>
 
-    <!-- Flechas del Carrusel -->
+    <!-- Flechas del carrusel -->
     <button class="slider-arrow prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
     <button class="slider-arrow next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
 
-    <!-- Puntos indicadores -->
+    <!-- Indicadores de puntos -->
     <div class="slider-dots">
       <span class="dot active" onclick="setSlide(0)"></span>
       <span class="dot" onclick="setSlide(1)"></span>
@@ -74,7 +74,7 @@
     </div>
   </header>
 
-  <!-- BARRA DE CATEGORÍAS MINIMALISTA (SIN IMÁGENES) -->
+  <!-- BARRA DE CATEGORÍAS MINIMALISTA (SOLO TEXTO E ICONOS) -->
   <section id="categorias" class="quick-categories">
     <div class="cat-item">
       <i data-lucide="shirt"></i>
@@ -108,7 +108,7 @@
     </div>
   </section>
 
-  <!-- CATÁLOGO DINÁMICO (CARGA AUTOMÁTICA DESDE productos.json) -->
+  <!-- CATÁLOGO (Ropa y prendas reales desde productos.json) -->
   <section id="catalogo" class="featured-products">
     <div class="section-title-bar">
       <div class="title-left">
@@ -118,7 +118,7 @@
       <a href="#" class="see-all">Ver todos <i data-lucide="arrow-right"></i></a>
     </div>
 
-    <!-- Contenedor donde script.js dibuja tus prendas de productos.json -->
+    <!-- Contenedor dinámico -->
     <div class="products-grid"></div>
   </section>
 
@@ -143,7 +143,7 @@
     </div>
   </aside>
 
-  <!-- FOOTER IMPERIUM -->
+  <!-- PIE DE PÁGINA IMPERIUM -->
   <footer id="contacto">
     <p>&copy; 2026 IMPERIUM. Todos los derechos reservados.</p>
   </footer>
