@@ -1228,3 +1228,13 @@ footer {
   background: #8b5cf6;
   transform: scale(1.2);
 }
+/* REGULA EL TAMAÑO DEL LOGO EN LA BARRA */
+.nav-logo-img {
+  height: 32px !important;
+  width: auto !important;
+  max-height: 32px !important;
+  object-fit: contain;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}

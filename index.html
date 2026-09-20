@@ -27,22 +27,20 @@
     </div>
   </div>
 
-<!-- BARRA DE NAVEGACIÓN -->
+<!-- NAVBAR CON LOGO CONTROLADO -->
   <nav class="navbar">
     <div class="nav-left">
       <a href="#" class="logo">
-  <img src="imagenes/imperion-logo.jpeg" alt="IMPERION CLUB Logo" class="brand-logo">
-  <span>IMPERION CLUB</span>
-</a>
+        <img src="imagenes/imperion-logo.jpeg" alt="IMPERION CLUB" class="nav-logo-img">
         <span>IMPERION CLUB</span>
       </a>
     </div>
 
     <div class="nav-center">
-      <a href="#" class="active">Inicio</a>
-      <a href="#catalogo">Tienda</a>
-      <a href="#categorias">Categorías</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#inicio">INICIO</a>
+      <a href="#catalogo">TIENDA</a>
+      <a href="#categorias">CATEGORÍAS</a>
+      <a href="#contacto">CONTACTO</a>
     </div>
 
     <div class="nav-right">
@@ -50,25 +48,52 @@
         <i data-lucide="search"></i>
         <input type="text" placeholder="Buscar...">
       </div>
-      
-      <a href="#" class="nav-icon-btn"><i data-lucide="user"></i></a>
-      
-      <div class="cart-btn" onclick="toggleCart()">
+      <button class="nav-icon-btn"><i data-lucide="user"></i></button>
+      <button class="nav-icon-btn cart-btn">
         <i data-lucide="shopping-bag"></i>
-        <span class="cart-count" id="cart-count">0</span>
-      </div>
+        <span class="cart-count">0</span>
+      </button>
     </div>
   </nav>
 
+  <!-- CARRUSEL HERO (SOLO FOTOS DE PORTADA, SIN EL LOGO DE FONDO) -->
+  <header id="inicio" class="hero-slider">
+    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen1.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen2.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen3.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen4.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen5.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen6.jpg');"></div>
+
+    <div class="hero-content">
+      <p class="sub-label">ESTILO / ACTITUD / CURADURÍA</p>
+      <h1>TU ESTILO,<br><span class="highlight-purple">TU IDENTIDAD</span></h1>
+      <p class="hero-text">Ropa urbana, reventa seleccionada y prendas atemporales para quienes no siguen las reglas, sino su propio camino.</p>
+      <a href="#catalogo" class="btn-purple">VER COLECCIÓN <i data-lucide="arrow-right"></i></a>
+    </div>
+
+    <button class="slider-arrow prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
+    <button class="slider-arrow next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
+
+    <div class="slider-dots">
+      <span class="dot active" onclick="setSlide(0)"></span>
+      <span class="dot" onclick="setSlide(1)"></span>
+      <span class="dot" onclick="setSlide(2)"></span>
+      <span class="dot" onclick="setSlide(3)"></span>
+      <span class="dot" onclick="setSlide(4)"></span>
+      <span class="dot" onclick="setSlide(5)"></span>
+    </div>
+  </header>
+
 <!-- CARRUSEL HERO / PORTADA (LAS 6 IMÁGENES) -->
- <header id="inicio" class="hero-slider">
-    <!-- Las 6 diapositivas con rutas a tu carpeta de imágenes -->
-    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/portada1.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/portada2.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/portada3.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/portada4.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/portada5.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/portada6.jpg');"></div>
+<header id="inicio" class="hero-slider">
+    <!-- Las 6 diapositivas originales -->
+    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen1.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen2.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen3.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen4.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen5.jpg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen6.jpg');"></div>
 
     <!-- Contenido sobre la portada -->
     <div class="hero-content">
