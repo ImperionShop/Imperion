@@ -675,4 +675,69 @@ footer {
 .hero {
   padding-top: 120px; /* Le da espacio libre debajo de la navbar */
   min-height: 80vh;
+} .hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh; /* Garantiza que ocupe casi toda la pantalla */
+  padding-top: 100px; /* Deja espacio para la barra fija */
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0a0a0c;
+  /* Imagen de fondo / portada si la usas como background */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding-left: 50px;
+}
+
+.hero-subtitle {
+  color: var(--purple-primary);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 30px;
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+/* Si tu portada usa un contenedor de imagen a la derecha */
+.hero-image-container {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  min-height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-container img {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
 }
