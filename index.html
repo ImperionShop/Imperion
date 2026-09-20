@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ImperionClub | Resale & Curated Streetwear</title>
+  <title>IMPERIUM | Resale & Curated Streetwear</title>
   
   <link rel="stylesheet" href="style-moderno.css">
   
@@ -14,84 +14,48 @@
 </head>
 <body>
 
-<!-- PANTALLA DE CARGA / PRELOADER -->
-<div class="preloader-overlay">
-    <div class="loader-content">
-      <svg class="loader-crown" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
-        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
-      </svg>
-      <h2 class="loader-title">IMPERION CLUB</h2>
-      <div class="loader-bar">
-        <div class="loader-progress"></div>
-      </div>
-    </div>
-  </div>
-
-<!-- NAVBAR CON LOGO CONTROLADO -->
-  <a href="#" class="logo">
-  <img src="imagenes/imperion-logo.jpeg" alt="IMPERION CLUB" class="nav-logo-img">
-  <span>IMPERION CLUB</span>
-</a>
+  <!-- BARRA DE NAVEGACIÓN PRINCIPAL -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo">
+        <svg class="crown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
+        </svg>
+        <span>IMPERIUM</span>
+      </a>
     </div>
 
-    <div class="nav-center">
-      <a href="#inicio">INICIO</a>
-      <a href="#catalogo">TIENDA</a>
-      <a href="#categorias">CATEGORÍAS</a>
-      <a href="#contacto">CONTACTO</a>
+    <div class="nav-links">
+      <a href="#" class="active">Inicio</a>
+      <a href="#catalogo">Tienda</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#contacto">Contacto</a>
     </div>
 
     <div class="nav-right">
       <div class="search-box">
         <i data-lucide="search"></i>
-        <input type="text" placeholder="Buscar...">
+        <input type="text" placeholder="Buscar prendas o marcas...">
       </div>
-      <button class="nav-icon-btn"><i data-lucide="user"></i></button>
-      <button class="nav-icon-btn cart-btn">
+      
+      <a href="#" class="nav-icon-btn"><i data-lucide="user"></i></a>
+      
+      <div class="cart-btn" onclick="toggleCart()">
         <i data-lucide="shopping-bag"></i>
-        <span class="cart-count">0</span>
-      </button>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
     </div>
   </nav>
 
-  <!-- CARRUSEL HERO (SOLO FOTOS DE PORTADA, SIN EL LOGO DE FONDO) -->
+  <!-- CARRUSEL HERO / PORTADA SLIDER DE FONDO DECORATIVO -->
   <header id="inicio" class="hero-slider">
-  <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen1.jpg');"></div>
-  <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen2.jpg');"></div>
-  <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen3.jpg');"></div>
-  <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen4.jpg');"></div>
-  <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen5.jpg');"></div>
-  <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen6.jpg');"></div>
-  
-    <div class="hero-content">
-      <p class="sub-label">ESTILO / ACTITUD / CURADURÍA</p>
-      <h1>TU ESTILO,<br><span class="highlight-purple">TU IDENTIDAD</span></h1>
-      <p class="hero-text">Ropa urbana, reventa seleccionada y prendas atemporales para quienes no siguen las reglas, sino su propio camino.</p>
-      <a href="#catalogo" class="btn-purple">VER COLECCIÓN <i data-lucide="arrow-right"></i></a>
-    </div>
-
-    <button class="slider-arrow prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
-    <button class="slider-arrow next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
-
-    <div class="slider-dots">
-      <span class="dot active" onclick="setSlide(0)"></span>
-      <span class="dot" onclick="setSlide(1)"></span>
-      <span class="dot" onclick="setSlide(2)"></span>
-      <span class="dot" onclick="setSlide(3)"></span>
-      <span class="dot" onclick="setSlide(4)"></span>
-      <span class="dot" onclick="setSlide(5)"></span>
-    </div>
-  </header>
-
-<!-- CARRUSEL HERO / PORTADA (LAS 6 IMÁGENES) -->
-<header id="inicio" class="hero-slider">
-    <!-- Las 6 diapositivas originales -->
-    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen1.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen2.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen3.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen4.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen5.jpg');"></div>
-    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%), url('imagenes/imagen6.jpg');"></div>
+    <!-- Las 6 diapositivas de fondo -->
+    <div class="slide active" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen1.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen2.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen3.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen4.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen5.jpeg');"></div>
+    <div class="slide" style="background-image: linear-gradient(90deg, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.5) 60%, rgba(10, 10, 12, 0.1) 100%), url('./imagenes/imagen6.jpeg');"></div>
 
     <!-- Contenido sobre la portada -->
     <div class="hero-content">
@@ -185,31 +149,9 @@
     </div>
   </aside>
 
-<!-- SECCIÓN DE CONTACTO -->
-  <section id="contacto" class="contact-section">
-    <div class="section-title-bar">
-      <div class="title-left">
-        <span class="purple-line"></span>
-        <h2>CONTACTO</h2>
-      </div>
-    </div>
-
-    <div class="contact-container">
-      <div class="contact-card">
-        <i data-lucide="mail"></i>
-        <a href="mailto:imperionclub@gmail.com">ImperionClub@gmail.com</a>
-      </div>
-
-      <div class="contact-card">
-        <i data-lucide="instagram"></i>
-        <a href="https://instagram.com/ImperionClub" target="_blank">@ImperionClub</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PIE DE PÁGINA -->
-  <footer>
-    <p>&copy; 2026 IMPERION CLUB. Todos los derechos reservados.</p>
+  <!-- PIE DE PÁGINA IMPERIUM -->
+  <footer id="contacto">
+    <p>&copy; 2026 IMPERIUM. Todos los derechos reservados.</p>
   </footer>
 
   <script src="script.js"></script>
